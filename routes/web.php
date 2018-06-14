@@ -29,9 +29,14 @@ Route::prefix('admin')->group(function() {
 
 	// ADMIN PAGES
 	Route::get('/announcement-page', 'AdminPagesController@showAddAnnouncementPage')->name('announcement.page');
+
+	Route::get('/bulletin-page', 'AdminPagesController@showAddBulletinPage')->name('bulletin.page');
+	Route::get('/user-page', 'AdminPagesController@showAddUserPage')->name('user.page');
+
+	// ADMIN POST FUNCTION
+
+	Route::post('/post-announcement', 'AdminStoreController@postAnnouncement')->name('post.announcement');
+	Route::post('/post-bulletin', 'AdminStoreController@postBulletin')->name('post.bulletin');
 });
 
 
-// ADMIN POST FUNCTION
-
-Route::post('/post-announcement', 'AdminStoreController@postAnnouncement')->name('post.announcement');
