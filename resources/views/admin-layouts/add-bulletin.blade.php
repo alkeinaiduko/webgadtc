@@ -1,15 +1,7 @@
 @extends('admin-layouts.app')
 
 @section('content')
-	<header id="admin-header">
-		<h3>Admin Page</h3>
-		<ul>
-			<li>Alkein Villajos</li>
-			<li class="profile-pic">
-				<img src="images/admin/prof.jpg">
-			</li>
-		</ul>
-	</header>
+	@include('admin-layouts.partials.admin-header')
 	<div id="admin-holder">
 		<section id="admin-side-nav">
 			<div class="side-navbars">
@@ -18,9 +10,9 @@
 					<li id="add-new"><i class="material-icons">create</i>Add New</li>
 					<div class="add-new-component is-open">
 						<ul>
-							<li><i class="material-icons">add</i><a href="{{route('announcement.page')}}">Announcement</a></li>
-							<li class="active"><i class="material-icons">add</i><a href="{{route('bulletin.page')}}">Bulletin</a></li>
-							<li><i class="material-icons">perm_identity</i><a href="{{route('user.page')}}">User</a></li>
+							<a href="{{route('announcement.page')}}"><li><i class="material-icons">add</i>Announcement</li></a>
+							<a href="{{route('bulletin.page')}}"><li class="active"><i class="material-icons">add</i>Bulletin</li></a>
+							<a href="{{route('user.page')}}"><li><i class="material-icons">perm_identity</i>User</li></a>
 						</ul>
 					</div>
 					<li><i class="material-icons">web_asset</i><a href="#">Announcements</a></li>

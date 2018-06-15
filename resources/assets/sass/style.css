@@ -72,6 +72,14 @@ body, html {
 	position: fixed;
 }
 
+#admin-side-nav a {
+	color: #fff !important;
+}
+
+#admin-side-nav a:hover {
+	text-decoration: none !important;
+}
+
 #admin-side-nav > .side-navbars {
 	padding-top: 55px;
 /*
@@ -89,15 +97,10 @@ body, html {
 	background: #4586ff;
 }
 
-#admin-side-nav > .side-navbars li > a {
-	color: #fff;
-	padding-left: 5px;
-}
-
-
 #admin-side-nav > .side-navbars li > i {
 	color: #fff;
 	padding-left: 20px;
+	padding-right: 5px;
 	position: relative;
 	top: 5px;
 }
@@ -120,8 +123,8 @@ body, html {
 	height: auto !important;
 }
 
-#admin-side-nav > .side-navbars #add-new-component li {
-	padding-left: 10px;
+#admin-side-nav > .side-navbars #add-new-component ul {
+	padding-left: 20px;
 }
 
 #admin-holder {
@@ -156,4 +159,10 @@ body, html {
 
 #form-holder input.bulletin-title {
 	
+}
+
+
+.add-new-component ul li {
+	padding-left: 20px;
+	list-style: none;
 }

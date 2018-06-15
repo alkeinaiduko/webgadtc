@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Announcement;
 use App\Bulletin;
 use App\User;
@@ -63,7 +64,7 @@ class AdminStoreController extends Controller
 
         User::create([
             'email' => request('username'),
-            'password' => request('password'),
+            'password' => Hash::make(request('password')),
             'firstname' => request('firstname'),
             'middlename' => request('middlename'),
             'lastname' => request('lastname'),
