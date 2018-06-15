@@ -17,7 +17,7 @@
 							<li><i class="material-icons">perm_identity</i><a href="{{route('user.page')}}">User</a></li>
 						</ul>
 					</div>
-					<li><i class="material-icons">web_asset</i><a href="#">Announcements</a></li>
+					<a href="{{route('get.announcements')}}"><li><i class="material-icons">web_asset</i>Announcements</li></a>
 					<li><i class="material-icons">list</i><a href="#">Bulletin</a></li>
 				</ul>
 			</div>
