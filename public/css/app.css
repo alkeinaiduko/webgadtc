@@ -10474,6 +10474,10 @@ body {
   height: auto;
 }
 
+.admin-main-content h3 {
+  margin-bottom: 20px;
+}
+
 .wrapper {
   width: 96%;
   margin: 0 auto;

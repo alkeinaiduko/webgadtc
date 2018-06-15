@@ -6,7 +6,7 @@
 		<ul>
 			<li>Alkein Villajos</li>
 			<li class="profile-pic">
-				<img src="images/admin/prof.jpg">
+				<img src="{{asset('images/admin/prof.jpg')}}">
 			</li>
 		</ul>
 	</header>
@@ -32,61 +32,62 @@
 		<section id="main-content">
 			<div class="admin-main-content-container">
 				<div class="admin-main-content">
-					<h3>Add Student</h3>
-					<form>
-						<h4>Login Details</h4>
-						<div class="uk-grid-small" uk-grid>
-							<div class="uk-width-1-3">
-								<input class="uk-input" type="text" placeholder="Username">
-							</div>
-							<div class="uk-width-1-3">
-								<input class="uk-input" type="text" placeholder="Password">
-							</div>
-						</div>
-						<h4>Student's Information</h4>
-						<div class="uk-grid-small" uk-grid>
-							<div class="uk-width-1-3">
-								<input class="uk-input" type="text" placeholder="First Name">
-							</div>
-							<div class="uk-width-1-3">
-								<input class="uk-input" type="text" placeholder="Middle Name">
-							</div>
-							<div class="uk-width-1-3">
-								<input class="uk-input" type="text" placeholder="Last Name">
-							</div>
-							<div class="uk-width-1-3">
-								<input class="uk-input" type="text" placeholder="Date of Birth">
-							</div>
-							<div class="uk-width-1-3">
-								<input class="uk-input" type="text" placeholder="Sex">
-							</div>
-							<div class="uk-width-1-3">
-								<input class="uk-input" type="text" placeholder="Address">
-							</div>
-							<div class="uk-width-1-3">
-								<div class="uk-form-controls">
-									<select class="uk-select" id="form-stacked-select">
-										<option>Select Department</option>
-										<option>Department of Computer Studies</option>
-										<option>Department of Teachers Education</option>
-										<option>Department of Arts and Sciences</option>
-										<option>Department of Criminology</option>
-										<option>Department of Midwifery</option>
-										<option>Department of Business</option>
-										<option>Department of Office Administration</option>
-									</select>
+					<h3>Add New Student</h3>
+					<form method="POST" action="{{route('add.student')}}">
+						@csrf
+						<div class="uk-margin">
+							<h5>Login Details</h5>
+							<div class="uk-grid-small" uk-grid>
+								<div class="uk-width-1-3">
+									<input class="uk-input" type="text" name="username" placeholder="Username" required>
+								</div>
+								<div class="uk-width-1-3">
+									<input class="uk-input" type="password" name="password" placeholder="Password" required>
 								</div>
 							</div>
-
-							<div class="uk-width-1-2"></div>
-
-								<datepicker placeholder="Select Date"></datepicker>
-
-							<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-								<label><button class="uk-button uk-button-primary">Post to Bulletin</button></label>
+						</div>
+						<div class="uk-margin">
+							<h5>Student's Information</h5>
+							<div class="uk-grid-small" uk-grid>
+								<div class="uk-width-1-3">
+									<input class="uk-input" type="text" name="firstname" placeholder="First Name" required>
+								</div>
+								<div class="uk-width-1-3">
+									<input class="uk-input" type="text" name="middlename" placeholder="Middle Name" required>
+								</div>
+								<div class="uk-width-1-3">
+									<input class="uk-input" type="text" name="lastname" placeholder="Last Name" required>
+								</div>
+								<div class="uk-width-1-3">
+									<birthdate-component></birthdate-component>
+								</div>
+								<div class="uk-width-1-3">
+									<input class="uk-input" type="text" name="sex" placeholder="Sex" required>
+								</div>
+								<div class="uk-width-1-3">
+									<input class="uk-input" type="text" name="address" placeholder="Address" required>
+								</div>
+								<div class="uk-width-1-3">
+									<div class="uk-form-controls">
+										<select class="uk-select" id="form-stacked-select" name="department">
+											<option>Select Department</option>
+											@foreach($depts as $dept)
+												<option>{{$dept->dept_name}}</option>
+											@endforeach
+										</select>
+									</div>
+								</div>
+								<div class="uk-width-1-2"></div>
+								</div>
+								<div class="uk-width-1-2"></div>
+								<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+									<label><button class="uk-button uk-button-primary">ADD NEW USER</button></label>
+								</div>
 							</div>
 						</div>
 					</form>
+
+					@include('admin-layouts.partials.messages')
 				</div>
 			</div>
 		</section>

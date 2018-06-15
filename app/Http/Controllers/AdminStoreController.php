@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Announcement;
 use App\Bulletin;
+use App\User;
 
 class AdminStoreController extends Controller
 {
@@ -44,5 +45,34 @@ class AdminStoreController extends Controller
         ]);
 
         return back()->with('success', 'Bulletin Posted Successfully!');
+    }
+
+    public function addStudent()
+    {
+        // $this->validate(request(), [
+        //     'username' => 'required',
+        //     'password' => 'required',
+        //     'firstname' => 'required',
+        //     'middlename' => 'required',
+        //     'lastname' => 'required',,
+        //     'birthdate' => 'required',
+        //     'sex' => 'required',  
+        //     'address' => 'required',
+        //     'department' => 'required'
+        // ]);
+
+        User::create([
+            'email' => request('username'),
+            'password' => request('password'),
+            'firstname' => request('firstname'),
+            'middlename' => request('middlename'),
+            'lastname' => request('lastname'),
+            'birthdate' => request('birthdate'),
+            'sex' => request('sex'),
+            'address' => request('address'),
+            'department' => request('department')
+        ]);
+
+        return back()->with('success', 'Student Added Successfully!');
     }
 }

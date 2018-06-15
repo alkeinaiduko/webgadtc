@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('date-component', require('./components/DateComponent.vue'));
+Vue.component('birthdate-component', require('./components/BirthdateComponent.vue'));
 
 
 const app = new Vue({

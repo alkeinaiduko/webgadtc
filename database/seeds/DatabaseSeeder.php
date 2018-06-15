@@ -39,6 +39,24 @@ class DatabaseSeeder extends Seeder
 	        	'created_at' => date("Y-m-d H:i:s"),
 	            'updated_at' => date("Y-m-d H:i:s")
 	        ],
+            [
+                'dept_name' => "Department of Teachers Education",
+                'dept_acro' => 'DTE',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'dept_name' => "Department of Office Administration",
+                'dept_acro' => 'DOA',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
+            ],
+            [
+                'dept_name' => "Department of Midwifery",
+                'dept_acro' => 'DOM',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s")
+            ],
         ];
 
         foreach($departments as $department) {
