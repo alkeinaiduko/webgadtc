@@ -14,8 +14,13 @@ class AdminAnnouncementsController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::all();
-        return view('admin-layouts.show-announcement', compact('announcements'));
+        
+        return view('admin-layouts.show-announcement');
+    }
+
+    public function getAnnouncements()
+    {
+        return Announcement::all();
     }
 
     /**

@@ -48896,9 +48896,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      announcements: [],
+      eachAnnouncement: {
+        id: 'No Selected ID',
+        title: 'No Selected Title',
+        description: 'No Selected Description',
+        created_at: 'No Selected Created On',
+        updated_at: 'No Selected Updated On'
+      }
+    };
+  },
+  created: function created() {
+    this.getAnnouncement();
+  },
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+  methods: {
+    getAnnouncement: function getAnnouncement() {
+      var _this = this;
+
+      axios.get('/admin/get-announcements').then(function (response) {
+        _this.announcements = response.data;
+      });
+    },
+    selectOne: function selectOne(announcement) {
+      this.eachAnnouncement.id = announcement.id;
+      this.eachAnnouncement.title = announcement.title;
+      this.eachAnnouncement.created_at = announcement.created_at;
+      this.eachAnnouncement.updated_at = announcement.updated_at;
+    }
+  }
+});
 
 /***/ }),
 /* 54 */
@@ -48908,66 +48952,114 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { attrs: { id: "announcements-list-container" } }, [
+    _c("div", { staticClass: "announcements-list-content" }, [
+      _c("ul", [
+        _c("li", { staticClass: "announcements-list-left-panel" }, [
+          _c(
+            "div",
+            { staticClass: "all-announcement-container" },
+            _vm._l(_vm.announcements, function(announcement) {
+              return _c(
+                "div",
+                {
+                  staticClass: "each-announcement-container",
+                  on: {
+                    click: function($event) {
+                      _vm.selectOne(announcement)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "announcement-title" }, [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(announcement.title) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "announcement-description" }, [
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(announcement.description.substring(0, 250))
+                      ),
+                      announcement.description.length > 250
+                        ? _c("span", [_vm._v("...")])
+                        : _vm._e()
+                    ])
+                  ])
+                ]
+              )
+            })
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "announcements-list-right-panel" }, [
+          _c("div", { staticClass: "announcement-detail-container" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "detail-body" }, [
+              _c("p", [
+                _c("strong", [_vm._v("ID:")]),
+                _vm._v(" " + _vm._s(_vm.eachAnnouncement.id))
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _c("strong", [_vm._v("Title:")]),
+                _vm._v(" " + _vm._s(_vm.eachAnnouncement.title))
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _c("strong", [_vm._v("Created On:")]),
+                _vm._v(" " + _vm._s(_vm.eachAnnouncement.created_at))
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _c("strong", [_vm._v("Updated On:")]),
+                _vm._v(" " + _vm._s(_vm.eachAnnouncement.updated_at))
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "announcements-list-container" } }, [
-      _c("div", { staticClass: "announcements-list-content" }, [
-        _c("ul", [
-          _c("li", { staticClass: "announcements-list-left-panel" }, [
-            _c("h2", [_vm._v("Announcement Title")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "announcements-list-right-panel" }, [
-            _c("div", { staticClass: "announcement-detail-container" }, [
-              _c("div", { staticClass: "detail-heading" }, [
-                _c("h4", { staticClass: "detail-title" }, [
-                  _vm._v("Announcement Details")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "detail-body" }, [
-                _c("p", [
-                  _c("strong", [_vm._v("Title:")]),
-                  _vm._v(" Announcement title")
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("strong", [_vm._v("Created On:")]),
-                  _vm._v(" June 16, 2017")
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("strong", [_vm._v("Updated On:")]),
-                  _vm._v(" June 17, 2017")
-                ]),
-                _vm._v(" "),
-                _c("p", [
-                  _c("strong", [_vm._v("Posted by:")]),
-                  _vm._v(" June 17, 2017")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("div", { staticClass: "detail-footer" }, [
-                _c("div", { staticClass: "announcement-button-container" }, [
-                  _c("button", { staticClass: "btn btn-success" }, [
-                    _vm._v("Edit")
-                  ]),
-                  _vm._v(" "),
-                  _c("button", { staticClass: "btn btn-danger" }, [
-                    _vm._v("Delete")
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "detail-heading" }, [
+      _c("h4", { staticClass: "detail-title" }, [
+        _vm._v("Announcement Details")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_c("strong", [_vm._v("Posted by:")]), _vm._v(" ADMIN")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "detail-footer" }, [
+      _c("div", { staticClass: "announcement-button-container" }, [
+        _c("button", { staticClass: "btn btn-success" }, [_vm._v("Edit")]),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")])
       ])
     ])
   }

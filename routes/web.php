@@ -40,7 +40,12 @@ Route::prefix('admin')->group(function() {
 
 
 	// ANNOUNCEMENTS CONTROLLER
-	Route::get('/get-announcements', 'AdminAnnouncementsController@index')->name('get.announcements');
+
+	Route::get('/get-announcements', 'AdminAnnouncementsController@getAnnouncements')->name('get.announcements');
+	Route::get('/show-announcements-page', 'AdminAnnouncementsController@index')->name('show.announcements');
+	
+
+
 });
 
 
