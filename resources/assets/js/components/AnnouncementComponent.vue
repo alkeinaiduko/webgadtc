@@ -1,5 +1,16 @@
 <template>
+
   <div id="announcements-list-container">
+    <modal v-if="showModal" @close="showModal = false" :anntitle="eachAnnouncement.title" :anndesc="eachAnnouncement.description" @descChanged="newDesc = $event" @titleChanged="newTitle = $event">
+
+      <!--
+        you can use custom content here to overwrite
+        default content
+      -->
+      <!-- <input slot="header" class="uk-input" :value="eachAnnouncement.title"></input> -->
+
+      <!-- <textarea class="uk-textarea" name="description" slot="body" :value="eachAnnouncement.description"></textarea> -->
+    </modal>
     <div class="announcements-list-content">
       <ul>
         <li class="announcements-list-left-panel">
@@ -33,8 +44,8 @@
             <hr>
             <div class="detail-footer">
               <div class="announcement-button-container">
-                <button class="btn btn-success">Edit</button>
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-success" @click="showModal = true">Edit</button>
+                <button class="btn btn-danger" @click="deleteSelected(eachAnnouncement.id)">Delete</button>
               </div>
             </div>
           </div>
@@ -55,7 +66,8 @@
             description: 'No Selected Description',
             created_at: 'No Selected Created On',
             updated_at: 'No Selected Updated On'
-          }
+          },
+          showModal: false
         }
       },
       created() {
@@ -71,9 +83,23 @@
         selectOne(announcement) {
           this.eachAnnouncement.id = announcement.id;
           this.eachAnnouncement.title = announcement.title;
+          this.eachAnnouncement.description = announcement.description;
           this.eachAnnouncement.created_at = announcement.created_at;
           this.eachAnnouncement.updated_at = announcement.updated_at;
           
+        },
+        deleteSelected(id) {
+          axios.delete('/admin/delete-announcement/'+id)
+              .then((response) => {
+                  alert('announcement deleted');
+                  this.getAnnouncement();
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+        },
+        updateAnn(newDesc, newTitle) {
+          console.log(newDesc, newTitle);
         }
       }
     }

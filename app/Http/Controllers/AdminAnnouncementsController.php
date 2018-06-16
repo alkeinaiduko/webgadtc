@@ -86,6 +86,14 @@ class AdminAnnouncementsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $ann = Announcement::find($id);
+
+        // Announcement::delete($ann);
+
+        // return response()->json();
+
+        $announcement = Announcement::findOrFail($id);
+        $announcement->delete();
+        return '';
     }
 }
