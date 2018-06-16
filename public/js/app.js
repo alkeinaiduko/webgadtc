@@ -15317,6 +15317,7 @@ window.Vue = __webpack_require__(38);
 
 Vue.component('date-component', __webpack_require__(41));
 Vue.component('birthdate-component', __webpack_require__(44));
+Vue.component('announcement-component', __webpack_require__(52));
 
 var app = new Vue({
   el: '#app'
@@ -48804,6 +48805,181 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(12)
+/* script */
+var __vue_script__ = __webpack_require__(53)
+/* template */
+var __vue_template__ = __webpack_require__(54)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\AnnouncementComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-76c0058f", Component.options)
+  } else {
+    hotAPI.reload("data-v-76c0058f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "announcements-list-container" } }, [
+      _c("div", { staticClass: "announcements-list-content" }, [
+        _c("ul", [
+          _c("li", { staticClass: "announcements-list-left-panel" }, [
+            _c("h2", [_vm._v("Announcement Title")])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "announcements-list-right-panel" }, [
+            _c("div", { staticClass: "announcement-detail-container" }, [
+              _c("div", { staticClass: "detail-heading" }, [
+                _c("h4", { staticClass: "detail-title" }, [
+                  _vm._v("Announcement Details")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "detail-body" }, [
+                _c("p", [
+                  _c("strong", [_vm._v("Title:")]),
+                  _vm._v(" Announcement title")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [_vm._v("Created On:")]),
+                  _vm._v(" June 16, 2017")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [_vm._v("Updated On:")]),
+                  _vm._v(" June 17, 2017")
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [_vm._v("Posted by:")]),
+                  _vm._v(" June 17, 2017")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("div", { staticClass: "detail-footer" }, [
+                _c("div", { staticClass: "announcement-button-container" }, [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("Edit")
+                  ]),
+                  _vm._v(" "),
+                  _c("button", { staticClass: "btn btn-danger" }, [
+                    _vm._v("Delete")
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-76c0058f", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

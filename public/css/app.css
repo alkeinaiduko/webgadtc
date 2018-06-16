@@ -10486,6 +10486,76 @@ body {
   width: 100%;
 }
 
+#announcements-list-container {
+  padding: 10px;
+}
+
+#announcements-list-container .announcements-list-content {
+  width: 100%;
+  height: auto;
+}
+
+#announcements-list-container .announcements-list-content ul {
+  list-style: none;
+}
+
+#announcements-list-container .announcements-list-content ul li {
+  float: left;
+}
+
+#announcements-list-container .announcements-list-content ul li.announcements-list-left-panel {
+  width: 65%;
+  padding: 15px;
+}
+
+#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel {
+  width: 35%;
+  border: 1px solid #e2e2e2;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-heading {
+  background-color: #ffc107;
+  color: #fff;
+  padding: 15px;
+}
+
+#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container h4 {
+  margin-bottom: 0;
+}
+
+#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-body {
+  padding: 15px;
+}
+
+#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-footer {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-footer .announcement-button-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-footer button {
+  width: 45%;
+}
+
+#announcements-list-container .announcements-list-content hr {
+  margin-bottom: 5px;
+}
+
+#announcements-list-container::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
 .wrapper {
   width: 96%;
   margin: 0 auto;
