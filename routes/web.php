@@ -44,7 +44,7 @@ Route::prefix('admin')->group(function() {
 	Route::get('/get-announcements', 'AdminAnnouncementsController@getAnnouncements')->name('get.announcements');
 	Route::get('/show-announcements-page', 'AdminAnnouncementsController@index')->name('show.announcements');
 	Route::delete('/delete-announcement/{id}', 'AdminAnnouncementsController@destroy')->name('delete.announcement');
-	
+	Route::put('/edit/{id}', 'AdminAnnouncementsController@update')->name('edit.announcement');
 
 
 });
