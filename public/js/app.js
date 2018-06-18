@@ -48947,6 +48947,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -48956,6 +48958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         id: 'No Selected ID',
         title: 'No Selected Title',
         description: 'No Selected Description',
+        announcement_image: 'No Selected Description',
         created_at: 'No Selected Created On',
         updated_at: 'No Selected Updated On'
       },
@@ -48966,7 +48969,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       edited: {
         title: '',
         description: ''
-      }
+      },
+      image_src: ''
     };
   },
   created: function created() {
@@ -48996,6 +49000,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.eachAnnouncement.id = announcement.id;
       this.eachAnnouncement.title = announcement.title;
       this.eachAnnouncement.description = announcement.description;
+      this.image_src = '/storage/announcement_images/' + announcement.announcement_image;
       this.eachAnnouncement.created_at = created_at;
       this.eachAnnouncement.updated_at = updated_at;
     },
@@ -49027,6 +49032,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.eachAnnouncement.id = this.announcements[0].id;
       this.eachAnnouncement.title = this.announcements[0].title;
       this.eachAnnouncement.description = this.announcements[0].description;
+      this.image_src = '/storage/announcement_images/' + this.announcements[0].announcement_image;
       this.eachAnnouncement.created_at = created_at;
       this.eachAnnouncement.updated_at = updated_at;
     },
@@ -49258,7 +49264,11 @@ var render = function() {
                   _vm._v(" " + _vm._s(_vm.eachAnnouncement.updated_at))
                 ]),
                 _vm._v(" "),
-                _vm._m(1)
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c("img", { attrs: { width: "150px", src: _vm.image_src } })
               ]),
               _vm._v(" "),
               _c("hr"),
@@ -49316,6 +49326,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", [_c("strong", [_vm._v("Posted by:")]), _vm._v(" ADMIN")])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_c("strong", [_vm._v("Announcement Cover:")])])
   }
 ]
 render._withStripped = true

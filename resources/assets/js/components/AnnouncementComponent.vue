@@ -74,6 +74,8 @@
               <p><strong>Created On:</strong> {{eachAnnouncement.created_at}}</p>
               <p><strong>Updated On:</strong> {{eachAnnouncement.updated_at}}</p>
               <p><strong>Posted by:</strong> ADMIN</p>
+              <p><strong>Announcement Cover:</strong></p>
+              <img width="150px" :src="image_src">
             </div>
             <hr>
             <div class="detail-footer">
@@ -98,6 +100,7 @@
             id: 'No Selected ID',
             title: 'No Selected Title',
             description: 'No Selected Description',
+            announcement_image: 'No Selected Description',
             created_at: 'No Selected Created On',
             updated_at: 'No Selected Updated On'
           },
@@ -108,7 +111,8 @@
           edited: {
             title: '',
             description: ''
-          }
+          },
+          image_src: ''
         }
       },
       created() {
@@ -139,6 +143,7 @@
           this.eachAnnouncement.id = announcement.id;
           this.eachAnnouncement.title = announcement.title;
           this.eachAnnouncement.description = announcement.description;
+          this.image_src = '/storage/announcement_images/' + announcement.announcement_image;
           this.eachAnnouncement.created_at = created_at;
           this.eachAnnouncement.updated_at = updated_at;
           
@@ -171,6 +176,7 @@
           this.eachAnnouncement.id = this.announcements[0].id;
           this.eachAnnouncement.title = this.announcements[0].title;
           this.eachAnnouncement.description = this.announcements[0].description;
+          this.image_src = '/storage/announcement_images/' + this.announcements[0].announcement_image;
           this.eachAnnouncement.created_at = created_at;
           this.eachAnnouncement.updated_at = updated_at;
         },

@@ -10,17 +10,41 @@ use App\User;
 
 class AdminStoreController extends Controller
 {
-    public function postAnnouncement()
+    public function postAnnouncement(Request $request)
     {
     	$this->validate(request(), [
     		'title' => 'required|min:5',
-    		'description' => 'required|min:10'
+    		'description' => 'required|min:10',
+            'announcement_image' => 'required|image|mimes:jpeg,jpg,png|max:10000'
     	]);
+        // File Upload
+        if($request->hasFile('announcement_image')) {
+            $fileNameWithExt = $request->file('announcement_image')->getClientOriginalName();
 
-    	Announcement::create([
-            'title' => request('title'),
-            'description' => request('description')
-        ]);
+            // GET FILE NAME
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            // GET EXTENSION
+            $extension = $request->file('announcement_image')->getClientOriginalExtension();
+            // File Unique Name
+            $fileNameToStore = $filename. '_'. time().'.'.$extension;
+
+            $path = $request->file('announcement_image')->storeAs('public/announcement_images', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
+
+    	// Announcement::create([
+     //        'title' => request('title'),
+     //        'description' => request('description'),
+     //        'announcement_image' => $fileNameToStore
+     //    ]);
+
+        $ann = new Announcement;
+        $ann->title = request('title');
+        $ann->description = request('description');
+        $ann->announcement_image = $fileNameToStore;
+        $ann->save();
 
     	return back()->with('success', 'Announcement Posted Successfully!');
 

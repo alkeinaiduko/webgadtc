@@ -24,7 +24,7 @@
 		<section id="main-content">
 			<div class="admin-main-content-container">
 				<div class="admin-main-content">
-					<form method="POST" action="{{route('post.announcement')}}">
+					<form method="POST" action="{{route('post.announcement')}}" enctype="multipart/form-data">
 						@csrf
 						<fieldset class="uk-fieldset">
 
@@ -35,8 +35,15 @@
 							</div>
 
 							<div class="uk-margin">
-								<textarea class="uk-textarea" rows="5" placeholder="Announcement description" name="description" value="{{old('title')}}"></textarea>
+								<textarea class="uk-textarea" rows="5" placeholder="Announcement description" name="description" value="{{old('description')}}"></textarea>
 							</div>
+
+							<div class="uk-margin" uk-margin>
+						        <div uk-form-custom="target: true">
+						            <input type="file" name="announcement_image">
+						            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select a picture" disabled>
+						        </div>
+						    </div>
 
 							<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
 								<label><button class="uk-button uk-button-primary">Post</button></label>
