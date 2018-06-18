@@ -82,6 +82,7 @@
     
     <script>
         $(document).ready(function(){
+            $(".add-new-component").hide();
             $("#add-new").click(function(){
                 $(".add-new-component").slideToggle();
             });

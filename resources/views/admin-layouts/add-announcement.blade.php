@@ -41,12 +41,12 @@
 							<div class="uk-margin" uk-margin>
 						        <div uk-form-custom="target: true">
 						            <input type="file" name="announcement_image">
-						            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select a picture" disabled>
+						            <input class="uk-input uk-form-width-medium" type="text" placeholder="Announcement Cover" disabled>
 						        </div>
 						    </div>
 
 							<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-								<label><button class="uk-button uk-button-primary">Post</button></label>
+								<label><button class="uk-button uk-button-primary">Post Announcement</button></label>
 							</div>
 						</fieldset>
 					</form>
@@ -55,4 +55,5 @@
 			</div>
 		</section>
 	</div>
+	
 @endsection
