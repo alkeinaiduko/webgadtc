@@ -19,6 +19,8 @@ Vue.component('date-component', require('./components/DateComponent.vue'));
 Vue.component('birthdate-component', require('./components/BirthdateComponent.vue'));
 Vue.component('announcement-component', require('./components/AnnouncementComponent.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
+Vue.component('success-modal', require('./components/SuccessModal.vue'));
+Vue.component('confirm-modal', require('./components/ConfirmModal.vue'));
 
 
 const app = new Vue({

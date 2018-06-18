@@ -20,7 +20,7 @@ class AdminAnnouncementsController extends Controller
 
     public function getAnnouncements()
     {
-        return Announcement::all();
+        return Announcement::latest()->get();
     }
 
     /**
