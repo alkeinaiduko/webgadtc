@@ -25,7 +25,7 @@
               <div>
               
             </div>
-            <button class="btn btn-success" @click="saveEdit">Save</button> | 
+            <button class="btn btn-success" @click="saveEdit" :disabled="isDisabled">Save</button> | 
               <button class="btn btn-danger" @click="$emit('close')">
                 Close
               </button>
@@ -45,14 +45,17 @@
     data() {
       return {
         title: '',
-        desc: ''
+        desc: '',
+        isDisabled: true
       }
     },
     methods: {
       changeDesc(event) {
+        this.isDisabled = false;
         this.desc = event.target.value;
       },
       changeTitle(event) {
+        this.isDisabled = false;
         this.title = event.target.value;
       },
       saveEdit() {

@@ -2,14 +2,6 @@
 
   <div id="announcements-list-container">
     <modal v-if="showModal" @close="showModal = false" :anntitle="eachAnnouncement.title" :anndesc="eachAnnouncement.description" @descChanged="edited.description = $event, successMessage()" @titleChanged="edited.title = $event, updateAnn(eachAnnouncement.id)">
-
-      <!--
-        you can use custom content here to overwrite
-        default content
-      -->
-      <!-- <input slot="header" class="uk-input" :value="eachAnnouncement.title"></input> -->
-
-      <!-- <textarea class="uk-textarea" name="description" slot="body" :value="eachAnnouncement.description"></textarea> -->
     </modal>
 
     <success-modal v-if="showMessageModal" @close="showMessageModal = false">
@@ -78,7 +70,6 @@
               <h4 class="detail-title">Announcement Details</h4>
             </div>
             <div class="detail-body">
-              <p><strong>ID:</strong> {{eachAnnouncement.id}}</p>
               <p><strong>Title:</strong> {{eachAnnouncement.title}}</p>
               <p><strong>Created On:</strong> {{eachAnnouncement.created_at}}</p>
               <p><strong>Updated On:</strong> {{eachAnnouncement.updated_at}}</p>
@@ -110,6 +101,7 @@
             created_at: 'No Selected Created On',
             updated_at: 'No Selected Updated On'
           },
+          monthToString: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
           showModal: false,
           showMessageModal: false,
           showConfirmModal: false,
@@ -131,11 +123,24 @@
           });
         },
         selectOne(announcement) {
+
+          let createdDate = new Date(announcement.created_at);
+          let createdTimeToString = createdDate.toLocaleString('en-US', { hour: 'numeric', hour12: true , minute: 'numeric'});
+          let created_at = this.monthToString[createdDate.getMonth()+1] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
+
+
+
+          let updatedDate = new Date(announcement.updated_at);
+          let updatedTimeToString = updatedDate.toLocaleString('en-US', { hour: 'numeric', hour12: true , minute: 'numeric'});
+
+          let updated_at = this.monthToString[updatedDate.getMonth()+1] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + updatedTimeToString;
+
+
           this.eachAnnouncement.id = announcement.id;
           this.eachAnnouncement.title = announcement.title;
           this.eachAnnouncement.description = announcement.description;
-          this.eachAnnouncement.created_at = announcement.created_at;
-          this.eachAnnouncement.updated_at = announcement.updated_at;
+          this.eachAnnouncement.created_at = created_at;
+          this.eachAnnouncement.updated_at = updated_at;
           
         },
         confirmDelete() {
@@ -148,23 +153,28 @@
                   this.showConfirmModal = false;
 
                   this.populateAnnouncementDetails();
-
-                  // console.log(this.announcements);
               })
               .catch((e) => {
                 console.log(e);
               });
         },
         populateAnnouncementDetails() {
+          let createdDate = new Date(this.announcements[0].created_at);
+          let createdTimeToString = createdDate.toLocaleString('en-US', { hour: 'numeric', hour12: true , minute: 'numeric'});
+          let created_at = this.monthToString[createdDate.getMonth()+1] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
+
+          let updatedDate = new Date(this.announcements[0].updated_at);
+          let timeToString = updatedDate.toLocaleString('en-US', { hour: 'numeric', hour12: true , minute: 'numeric'});
+
+          let updated_at = this.monthToString[updatedDate.getMonth()+1] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + timeToString;
+
           this.eachAnnouncement.id = this.announcements[0].id;
           this.eachAnnouncement.title = this.announcements[0].title;
           this.eachAnnouncement.description = this.announcements[0].description;
-          this.eachAnnouncement.created_at = this.announcements[0].created_at;
-          this.eachAnnouncement.updated_at = this.announcements[0].updated_at;
+          this.eachAnnouncement.created_at = created_at;
+          this.eachAnnouncement.updated_at = updated_at;
         },
-        updateAnn(id) {
-          // console.log(newDesc, newTitle);
-          
+        updateAnn(id) {          
           if(this.edited.title == '') {
             this.edited.title = this.eachAnnouncement.title;
           }
@@ -175,7 +185,6 @@
 
           axios.put(`/admin/edit/${id}`, this.edited)
               .then((response) => {
-                console.log(response.data);
                 this.getAnnouncement();
               });
 

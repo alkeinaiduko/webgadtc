@@ -18,9 +18,9 @@ class AdminStoreController extends Controller
     	]);
 
     	Announcement::create([
-    		'title' => request('title'),
-    		'description' => request('description')
-    	]);
+            'title' => request('title'),
+            'description' => request('description')
+        ]);
 
     	return back()->with('success', 'Announcement Posted Successfully!');
 
