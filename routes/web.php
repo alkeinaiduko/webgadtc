@@ -34,9 +34,9 @@ Route::prefix('admin')->group(function() {
 	Route::get('/user-page', 'AdminPagesController@showAddUserPage')->name('user.page');
 
 	// ADMIN POST FUNCTION
-
 	Route::post('/post-announcement', 'AdminStoreController@postAnnouncement')->name('post.announcement');
 	Route::post('/post-bulletin', 'AdminStoreController@postBulletin')->name('post.bulletin');
+	Route::post('/add-student', 'AdminStoreController@addStudent')->name('add.student');
 });
 
 

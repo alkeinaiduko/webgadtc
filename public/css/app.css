@@ -10474,6 +10474,18 @@ body {
   height: auto;
 }
 
+.admin-main-content h3 {
+  margin-bottom: 20px;
+}
+
+.uk-dropdown {
+  padding: 12px !important;
+}
+
+.uk-dropdown button {
+  width: 100%;
+}
+
 .wrapper {
   width: 96%;
   margin: 0 auto;
@@ -10549,6 +10561,14 @@ html {
   position: fixed;
 }
 
+#admin-side-nav a {
+  color: #fff !important;
+}
+
+#admin-side-nav a:hover {
+  text-decoration: none !important;
+}
+
 #admin-side-nav > .side-navbars {
   padding-top: 55px;
   /*
@@ -10567,14 +10587,10 @@ html {
   background: #4586ff;
 }
 
-#admin-side-nav > .side-navbars li > a {
-  color: #fff;
-  padding-left: 5px;
-}
-
 #admin-side-nav > .side-navbars li > i {
   color: #fff;
   padding-left: 20px;
+  padding-right: 5px;
   position: relative;
   top: 5px;
 }
@@ -10596,8 +10612,8 @@ html {
   height: auto !important;
 }
 
-#admin-side-nav > .side-navbars #add-new-component li {
-  padding-left: 10px;
+#admin-side-nav > .side-navbars #add-new-component ul {
+  padding-left: 20px;
 }
 
 #admin-holder {
@@ -10632,6 +10648,11 @@ html {
 
 #form-holder input {
   width: 100%;
+}
+
+.add-new-component ul li {
+  padding-left: 20px;
+  list-style: none;
 }
 
 .navbar-laravel {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Department;
 
 class AdminPagesController extends Controller
 {
@@ -18,6 +19,8 @@ class AdminPagesController extends Controller
 
    public function showAddUserPage()
    {
-   	return view('admin-layouts.add-user');
+      $depts = Department::all();
+
+   	return view('admin-layouts.add-user', compact(['depts']));
    }
 }
