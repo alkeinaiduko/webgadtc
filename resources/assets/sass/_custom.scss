@@ -1,7 +1,16 @@
 $dark-gray: #edeeef;
+$orange: #f39c12;
+$skyblue: #22A7F0;
+$red: #FA2A00;
+$green: #2ecc71;
+$gray-border: #e2e2e2;
 
 body {
 	font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #555;
 }
 
 #admin-header {
@@ -74,10 +83,11 @@ body {
 
 #announcements-list-container {
 	padding: 10px;
+	height: 100%;
 
 	.announcements-list-content {
 		width: 100%;
-		height: auto;
+		height: 100%;
 
 		ul {
 			list-style: none;
@@ -88,28 +98,55 @@ body {
 
 			li.announcements-list-left-panel {
 				width: 65%;
-				padding: 15px;
+				height: 100%;
+ 
+				.each-announcement-container {
+					padding: 10px;
+					width: 100%;
+					height: auto;
+					background-color: #fff;
+					margin-bottom: 3px;
+					cursor: pointer;
+					transition: .5s ease;
+
+					.announcement-title {
+					    font-size: 21px;
+					    height: 30px;
+					    line-height: 43px;
+					    color: #555;
+					    font-weight: 700;
+					    width: 100%;
+					}
+				}
+
+				.all-announcement-container {
+					border-right: 2px solid $gray-border;
+					height: 100%;
+					padding-right: 10px;
+				}
 			}
 
 			li.announcements-list-right-panel {
 				width: 35%;
-				border: 1px solid #e2e2e2;
-				background-color: #f9f9f9;
-				border-radius: 5px;
-				-moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-				-webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-				box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 
 				.announcement-detail-container {
-
+					position: fixed;
+					width: 29%;
+					border: 1px solid $gray-border;
+					background-color: #f9f9f9;
+					border-radius: 5px;
+					-moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+					-webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+					box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+					
 					.detail-heading {
-						background-color: #ffc107;
-						color: #fff;
+						background-color: $orange;
 						padding: 15px;
 					}
 
 					h4 {
 						margin-bottom: 0;
+						color: #fff;
 					}
 
 					.detail-body {
@@ -129,6 +166,14 @@ body {
 						button {
 							width: 45%;
 						}
+
+						.btn-danger {
+							background-color: $red;
+						}
+
+						.btn-success {
+							background-color: $green;
+						}
 					}
 				}
 
@@ -136,7 +181,7 @@ body {
 		}
 
 		hr {
-			margin-bottom: 5px;
+			margin-bottom: 10px;
 		}
 	}
 }
@@ -147,3 +192,9 @@ body {
 	clear: both;
 }
 
+.each-announcement-container:hover {
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+	-webkit-transform: translateX(-3px);
+	transform: translateX(-3px);
+	transition: .5s ease;
+}

@@ -15,7 +15,7 @@
 							<a href="{{route('user.page')}}"><li class="active"><i class="material-icons">perm_identity</i>User</li></a>
 						</ul>
 					</div>
-					<a href="{{route('get.announcements')}}"><li><i class="material-icons">web_asset</i>Announcements</li></a>
+					<a href="{{route('show.announcements')}}"><li><i class="material-icons">web_asset</i>Announcements</li></a>
 					<li><i class="material-icons">list</i><a href="#">Bulletin</a></li>
 				</ul>
 			</div>

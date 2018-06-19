@@ -44,6 +44,7 @@ ul, li {
 
 body, html {
 	background: #f5f6f8;
+	font-family: Open Sans,sans-serif;
 }
 
 #admin-header {
@@ -161,11 +162,12 @@ body, html {
 	padding-top: 60px;
 	padding-left: 210px;
 	width: 100%;
-	height: auto;;
+	height: auto;
+
 }
 
 .admin-main-content-container {
-	background: #fff;
+	background: #fcfcfc !important;
 	width: 99%;
 	box-shadow: 2px 3px 10px rgba(0,0,0,0.3);
 }
