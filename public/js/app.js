@@ -15318,6 +15318,7 @@ window.Vue = __webpack_require__(38);
 Vue.component('date-component', __webpack_require__(41));
 Vue.component('birthdate-component', __webpack_require__(44));
 Vue.component('announcement-component', __webpack_require__(52));
+Vue.component('modal', __webpack_require__(55));
 
 var app = new Vue({
   el: '#app'
@@ -48909,6 +48910,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -48920,7 +48932,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         description: 'No Selected Description',
         created_at: 'No Selected Created On',
         updated_at: 'No Selected Updated On'
-      }
+      },
+      showModal: false
     };
   },
   created: function created() {
@@ -48938,8 +48951,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     selectOne: function selectOne(announcement) {
       this.eachAnnouncement.id = announcement.id;
       this.eachAnnouncement.title = announcement.title;
+      this.eachAnnouncement.description = announcement.description;
       this.eachAnnouncement.created_at = announcement.created_at;
       this.eachAnnouncement.updated_at = announcement.updated_at;
+    },
+    deleteSelected: function deleteSelected(id) {
+      var _this2 = this;
+
+      axios.delete('/admin/delete-announcement/' + id).then(function (response) {
+        alert('announcement deleted');
+        _this2.getAnnouncement();
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    updateAnn: function updateAnn(newDesc, newTitle) {
+      console.log(newDesc, newTitle);
     }
   }
 });
@@ -48952,87 +48979,140 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "announcements-list-container" } }, [
-    _c("div", { staticClass: "announcements-list-content" }, [
-      _c("ul", [
-        _c("li", { staticClass: "announcements-list-left-panel" }, [
-          _c(
-            "div",
-            { staticClass: "all-announcement-container" },
-            _vm._l(_vm.announcements, function(announcement) {
-              return _c(
-                "div",
-                {
-                  staticClass: "each-announcement-container",
-                  on: {
-                    click: function($event) {
-                      _vm.selectOne(announcement)
+  return _c(
+    "div",
+    { attrs: { id: "announcements-list-container" } },
+    [
+      _vm.showModal
+        ? _c("modal", {
+            attrs: {
+              anntitle: _vm.eachAnnouncement.title,
+              anndesc: _vm.eachAnnouncement.description
+            },
+            on: {
+              close: function($event) {
+                _vm.showModal = false
+              },
+              descChanged: function($event) {
+                _vm.newDesc = $event
+              },
+              titleChanged: function($event) {
+                _vm.newTitle = $event
+              }
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "announcements-list-content" }, [
+        _c("ul", [
+          _c("li", { staticClass: "announcements-list-left-panel" }, [
+            _c(
+              "div",
+              { staticClass: "all-announcement-container" },
+              _vm._l(_vm.announcements, function(announcement) {
+                return _c(
+                  "div",
+                  {
+                    staticClass: "each-announcement-container",
+                    on: {
+                      click: function($event) {
+                        _vm.selectOne(announcement)
+                      }
                     }
-                  }
-                },
-                [
-                  _c("div", { staticClass: "announcement-title" }, [
-                    _vm._v(
-                      "\n              " +
-                        _vm._s(announcement.title) +
-                        "\n            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "announcement-description" }, [
-                    _c("p", [
+                  },
+                  [
+                    _c("div", { staticClass: "announcement-title" }, [
                       _vm._v(
-                        _vm._s(announcement.description.substring(0, 250))
-                      ),
-                      announcement.description.length > 250
-                        ? _c("span", [_vm._v("...")])
-                        : _vm._e()
+                        "\n              " +
+                          _vm._s(announcement.title) +
+                          "\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "announcement-description" }, [
+                      _c("p", [
+                        _vm._v(
+                          _vm._s(announcement.description.substring(0, 250))
+                        ),
+                        announcement.description.length > 250
+                          ? _c("span", [_vm._v("...")])
+                          : _vm._e()
+                      ])
                     ])
-                  ])
-                ]
-              )
-            })
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "announcements-list-right-panel" }, [
-          _c("div", { staticClass: "announcement-detail-container" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "detail-body" }, [
-              _c("p", [
-                _c("strong", [_vm._v("ID:")]),
-                _vm._v(" " + _vm._s(_vm.eachAnnouncement.id))
+                  ]
+                )
+              })
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "announcements-list-right-panel" }, [
+            _c("div", { staticClass: "announcement-detail-container" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "detail-body" }, [
+                _c("p", [
+                  _c("strong", [_vm._v("ID:")]),
+                  _vm._v(" " + _vm._s(_vm.eachAnnouncement.id))
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [_vm._v("Title:")]),
+                  _vm._v(" " + _vm._s(_vm.eachAnnouncement.title))
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [_vm._v("Created On:")]),
+                  _vm._v(" " + _vm._s(_vm.eachAnnouncement.created_at))
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [_vm._v("Updated On:")]),
+                  _vm._v(" " + _vm._s(_vm.eachAnnouncement.updated_at))
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
               ]),
               _vm._v(" "),
-              _c("p", [
-                _c("strong", [_vm._v("Title:")]),
-                _vm._v(" " + _vm._s(_vm.eachAnnouncement.title))
-              ]),
+              _c("hr"),
               _vm._v(" "),
-              _c("p", [
-                _c("strong", [_vm._v("Created On:")]),
-                _vm._v(" " + _vm._s(_vm.eachAnnouncement.created_at))
-              ]),
-              _vm._v(" "),
-              _c("p", [
-                _c("strong", [_vm._v("Updated On:")]),
-                _vm._v(" " + _vm._s(_vm.eachAnnouncement.updated_at))
-              ]),
-              _vm._v(" "),
-              _vm._m(1)
-            ]),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _vm._m(2)
+              _c("div", { staticClass: "detail-footer" }, [
+                _c("div", { staticClass: "announcement-button-container" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      on: {
+                        click: function($event) {
+                          _vm.showModal = true
+                        }
+                      }
+                    },
+                    [_vm._v("Edit")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          _vm.deleteSelected(_vm.eachAnnouncement.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              ])
+            ])
           ])
         ])
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -49050,18 +49130,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", [_c("strong", [_vm._v("Posted by:")]), _vm._v(" ADMIN")])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "detail-footer" }, [
-      _c("div", { staticClass: "announcement-button-container" }, [
-        _c("button", { staticClass: "btn btn-success" }, [_vm._v("Edit")]),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")])
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -49070,6 +49138,222 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-76c0058f", module.exports)
+  }
+}
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(12)
+/* script */
+var __vue_script__ = __webpack_require__(56)
+/* template */
+var __vue_template__ = __webpack_require__(57)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\Modal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2c928174", Component.options)
+  } else {
+    hotAPI.reload("data-v-2c928174", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['anntitle', 'anndesc'],
+
+  data: function data() {
+    return {
+      title: '',
+      desc: ''
+    };
+  },
+
+  methods: {
+    changeDesc: function changeDesc(event) {
+      this.desc = event.target.value;
+    },
+    changeTitle: function changeTitle(event) {
+      this.title = event.target.value;
+    },
+    saveEdit: function saveEdit() {
+      this.$emit('descChanged', this.desc);
+      this.$emit('titleChanged', this.title);
+      this.$emit('close');
+    }
+  }
+
+});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("transition", { attrs: { name: "modal" } }, [
+    _c("div", { staticClass: "modal-mask" }, [
+      _c("div", { staticClass: "modal-wrapper" }, [
+        _c("div", { staticClass: "modal-container" }, [
+          _c("h2", [_vm._v("Edit Announcement")]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "modal-body" },
+            [
+              _c("div", [_c("h4", [_vm._v("Title")])]),
+              _vm._v(" "),
+              _vm._t("header", [
+                _c("input", {
+                  staticClass: "uk-input",
+                  domProps: { value: _vm.anntitle },
+                  on: { input: _vm.changeTitle }
+                })
+              ])
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "modal-body" },
+            [
+              _c("h4", [_vm._v("Description")]),
+              _vm._v(" "),
+              _vm._t("body", [
+                _c("textarea", {
+                  staticClass: "uk-textarea",
+                  attrs: { name: "description" },
+                  domProps: { value: _vm.anndesc },
+                  on: { input: _vm.changeDesc }
+                })
+              ])
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "modal-footer" },
+            [
+              _vm._t("footer", [
+                _c("div"),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: { click: _vm.saveEdit }
+                  },
+                  [_vm._v("Save")]
+                ),
+                _vm._v(" | \n            "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("close")
+                      }
+                    }
+                  },
+                  [_vm._v("\n              Close\n            ")]
+                )
+              ])
+            ],
+            2
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2c928174", module.exports)
   }
 }
 

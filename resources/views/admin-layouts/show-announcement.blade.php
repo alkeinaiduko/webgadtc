@@ -46,7 +46,7 @@
 							</tr>
 						@endforeach
 					</table> --}}
-
+					
 					<announcement-component></announcement-component>
 				</div>
 			</div>
