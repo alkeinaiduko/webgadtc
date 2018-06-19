@@ -24,7 +24,7 @@
 		<section id="main-content">
 			<div class="admin-main-content-container">
 				<div class="admin-main-content">
-					<table id="announcement-table" class="table table-striped">
+					{{-- <table id="announcement-table" class="table table-striped">
 						<thead>
 							<th>Title</th>
 							<th>Description</th>
@@ -45,7 +45,9 @@
 								</td>
 							</tr>
 						@endforeach
-					</table>
+					</table> --}}
+
+					<announcement-component></announcement-component>
 				</div>
 			</div>
 		</section>
