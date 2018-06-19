@@ -48947,15 +48947,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -48968,6 +48959,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         created_at: 'No Selected Created On',
         updated_at: 'No Selected Updated On'
       },
+      monthToString: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       showModal: false,
       showMessageModal: false,
       showConfirmModal: false,
@@ -48991,11 +48983,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     selectOne: function selectOne(announcement) {
+
+      var createdDate = new Date(announcement.created_at);
+      var createdTimeToString = createdDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+      var created_at = this.monthToString[createdDate.getMonth() + 1] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
+
+      var updatedDate = new Date(announcement.updated_at);
+      var updatedTimeToString = updatedDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+
+      var updated_at = this.monthToString[updatedDate.getMonth() + 1] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + updatedTimeToString;
+
       this.eachAnnouncement.id = announcement.id;
       this.eachAnnouncement.title = announcement.title;
       this.eachAnnouncement.description = announcement.description;
-      this.eachAnnouncement.created_at = announcement.created_at;
-      this.eachAnnouncement.updated_at = announcement.updated_at;
+      this.eachAnnouncement.created_at = created_at;
+      this.eachAnnouncement.updated_at = updated_at;
     },
     confirmDelete: function confirmDelete() {
       this.showConfirmModal = true;
@@ -49008,23 +49010,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this2.showConfirmModal = false;
 
         _this2.populateAnnouncementDetails();
-
-        // console.log(this.announcements);
       }).catch(function (e) {
         console.log(e);
       });
     },
     populateAnnouncementDetails: function populateAnnouncementDetails() {
+      var createdDate = new Date(this.announcements[0].created_at);
+      var createdTimeToString = createdDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+      var created_at = this.monthToString[createdDate.getMonth() + 1] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
+
+      var updatedDate = new Date(this.announcements[0].updated_at);
+      var timeToString = updatedDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+
+      var updated_at = this.monthToString[updatedDate.getMonth() + 1] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + timeToString;
+
       this.eachAnnouncement.id = this.announcements[0].id;
       this.eachAnnouncement.title = this.announcements[0].title;
       this.eachAnnouncement.description = this.announcements[0].description;
-      this.eachAnnouncement.created_at = this.announcements[0].created_at;
-      this.eachAnnouncement.updated_at = this.announcements[0].updated_at;
+      this.eachAnnouncement.created_at = created_at;
+      this.eachAnnouncement.updated_at = updated_at;
     },
     updateAnn: function updateAnn(id) {
       var _this3 = this;
-
-      // console.log(newDesc, newTitle);
 
       if (this.edited.title == '') {
         this.edited.title = this.eachAnnouncement.title;
@@ -49035,7 +49042,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       axios.put('/admin/edit/' + id, this.edited).then(function (response) {
-        console.log(response.data);
         _this3.getAnnouncement();
       });
     },
@@ -49238,11 +49244,6 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "detail-body" }, [
                 _c("p", [
-                  _c("strong", [_vm._v("ID:")]),
-                  _vm._v(" " + _vm._s(_vm.eachAnnouncement.id))
-                ]),
-                _vm._v(" "),
-                _c("p", [
                   _c("strong", [_vm._v("Title:")]),
                   _vm._v(" " + _vm._s(_vm.eachAnnouncement.title))
                 ]),
@@ -49426,15 +49427,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       title: '',
-      desc: ''
+      desc: '',
+      isDisabled: true
     };
   },
 
   methods: {
     changeDesc: function changeDesc(event) {
+      this.isDisabled = false;
       this.desc = event.target.value;
     },
     changeTitle: function changeTitle(event) {
+      this.isDisabled = false;
       this.title = event.target.value;
     },
     saveEdit: function saveEdit() {
@@ -49506,6 +49510,7 @@ var render = function() {
                   "button",
                   {
                     staticClass: "btn btn-success",
+                    attrs: { disabled: _vm.isDisabled },
                     on: { click: _vm.saveEdit }
                   },
                   [_vm._v("Save")]
