@@ -1,6 +1,6 @@
 <template>
   <div>
-        <datepicker format="MMMM dd, yyyy" name="birthdate" placeholder="Select Birthdate"></datepicker>
+        <datepicker format="MMMM dd, yyyy" name="birthdate" placeholder="Select Birthdate" autocomplete="off"></datepicker>
       </div>
 </template>
 

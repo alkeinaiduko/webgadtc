@@ -46,6 +46,12 @@ Route::prefix('admin')->group(function() {
 	Route::delete('/delete-announcement/{id}', 'AdminAnnouncementsController@destroy')->name('delete.announcement');
 	Route::put('/edit/{id}', 'AdminAnnouncementsController@update')->name('edit.announcement');
 
+	// BULLETINS CONTROLLER
+	Route::get('/get-bulletins', 'AdminBulletinsController@getBulletins')->name('get.bulletins');
+	Route::get('/show-bulletins-page', 'AdminBulletinsController@index')->name('show.bulletins');
+	Route::delete('/delete-bulletin/{id}', 'AdminBulletinsController@destroy')->name('delete.bulletin');
+	Route::put('/edit-bulletin/{id}', 'AdminBulletinsController@update')->name('edit.bulletin');
+
 
 });
 

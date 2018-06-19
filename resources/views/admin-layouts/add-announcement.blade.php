@@ -16,7 +16,7 @@
 						</ul>
 					</div>
 					<a href="{{route('show.announcements')}}"><li><i class="material-icons">web_asset</i>Announcements</li></a>
-					<li><i class="material-icons">list</i><a href="#">Bulletin</a></li>
+					<a href="{{route('show.bulletins')}}"><li><i class="material-icons">list</i>Bulletin</li></a>
 				</ul>
 			</div>
 		</section>
@@ -40,9 +40,13 @@
 
 							<div class="uk-margin" uk-margin>
 						        <div uk-form-custom="target: true">
-						            <input type="file" name="announcement_image">
+						            <input type="file" name="announcement_image" @change="onFileChange">
 						            <input class="uk-input uk-form-width-medium" type="text" placeholder="Announcement Cover" disabled>
+						            <div id="preview">
+									<img v-if="url" :src="url" />
+								</div>
 						        </div>
+
 						    </div>
 
 							<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">

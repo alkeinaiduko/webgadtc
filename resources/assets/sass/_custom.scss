@@ -81,11 +81,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-#announcements-list-container {
+#all-lists-list-container {
 	padding: 10px;
 	height: 100%;
 
-	.announcements-list-content {
+	.all-lists-list-content {
 		width: 100%;
 		height: 100%;
 
@@ -96,7 +96,7 @@ h1, h2, h3, h4, h5, h6 {
 				float: left;
 			}
 
-			li.announcements-list-left-panel {
+			li.all-lists-list-left-panel {
 				width: 65%;
 				height: 100%;
  
@@ -131,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
 				}
 			}
 
-			li.announcements-list-right-panel {
+			li.all-lists-list-right-panel {
 				width: 35%;
 
 				.announcement-detail-container {
@@ -192,7 +192,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
-#announcements-list-container::after {
+#all-lists-list-container::after {
 	display: block;
 	content: "";
 	clear: both;

@@ -18,11 +18,23 @@ window.Vue = require('vue');
 Vue.component('date-component', require('./components/DateComponent.vue'));
 Vue.component('birthdate-component', require('./components/BirthdateComponent.vue'));
 Vue.component('announcement-component', require('./components/AnnouncementComponent.vue'));
+Vue.component('bulletin-component', require('./components/BulletinComponent.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('success-modal', require('./components/SuccessModal.vue'));
 Vue.component('confirm-modal', require('./components/ConfirmModal.vue'));
 
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+	data() {
+		return {
+		  url: null,
+		}
+	},
+	methods: {
+		onFileChange(e) {
+		  const file = e.target.files[0];
+		  this.url = URL.createObjectURL(file);
+		}
+	}
 });

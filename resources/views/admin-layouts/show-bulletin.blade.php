@@ -15,8 +15,8 @@
 							<a href="{{route('user.page')}}"><li><i class="material-icons">perm_identity</i>User</li></a>
 						</ul>
 					</div>
-					<a href="{{route('show.announcements')}}"><li class="active"><i class="material-icons">web_asset</i>Announcements</li></a>
-					<a href="{{route('show.bulletins')}}"><li><i class="material-icons">list</i>Bulletin</li></a>
+					<a href="{{route('show.announcements')}}"><li><i class="material-icons">web_asset</i>Announcements</li></a>
+					<a href="{{route('show.bulletins')}}"><li class="active"><i class="material-icons">list</i>Bulletin</li></a>
 				</ul>
 			</div>
 		</section>
@@ -24,7 +24,7 @@
 		<section id="main-content">
 			<div class="admin-main-content-container">
 				<div class="admin-main-content">					
-					<announcement-component></announcement-component>
+					<bulletin-component></bulletin-component>
 				</div>
 			</div>
 		</section>

@@ -377,33 +377,6 @@ module.exports = {
 /* 1 */
 /***/ (function(module, exports) {
 
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
 /* globals __VUE_SSR_CONTEXT__ */
 
 // IMPORTANT: Do NOT use ES2015 features in this file.
@@ -507,6 +480,33 @@ module.exports = function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -4452,7 +4452,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
 /* 6 */
@@ -15288,7 +15288,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(53);
+module.exports = __webpack_require__(59);
 
 
 /***/ }),
@@ -15318,12 +15318,25 @@ window.Vue = __webpack_require__(38);
 Vue.component('date-component', __webpack_require__(41));
 Vue.component('birthdate-component', __webpack_require__(44));
 Vue.component('announcement-component', __webpack_require__(47));
+Vue.component('bulletin-component', __webpack_require__(64));
 Vue.component('modal', __webpack_require__(50));
-Vue.component('success-modal', __webpack_require__(58));
-Vue.component('confirm-modal', __webpack_require__(61));
+Vue.component('success-modal', __webpack_require__(53));
+Vue.component('confirm-modal', __webpack_require__(56));
 
 var app = new Vue({
-  el: '#app'
+	el: '#app',
+	data: function data() {
+		return {
+			url: null
+		};
+	},
+
+	methods: {
+		onFileChange: function onFileChange(e) {
+			var file = e.target.files[0];
+			this.url = URL.createObjectURL(file);
+		}
+	}
 });
 
 /***/ }),
@@ -32498,7 +32511,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(17)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(17)(module)))
 
 /***/ }),
 /* 17 */
@@ -48313,7 +48326,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(39).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(39).setImmediate))
 
 /***/ }),
 /* 39 */
@@ -48383,7 +48396,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
 /* 40 */
@@ -48576,14 +48589,14 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(8)))
 
 /***/ }),
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(42)
 /* template */
@@ -48702,7 +48715,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(45)
 /* template */
@@ -48786,7 +48799,8 @@ var render = function() {
         attrs: {
           format: "MMMM dd, yyyy",
           name: "birthdate",
-          placeholder: "Select Birthdate"
+          placeholder: "Select Birthdate",
+          autocomplete: "off"
         }
       })
     ],
@@ -48808,7 +48822,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(48)
 /* template */
@@ -48990,12 +49004,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var createdDate = new Date(announcement.created_at);
       var createdTimeToString = createdDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
-      var created_at = this.monthToString[createdDate.getMonth() + 1] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
+      var created_at = this.monthToString[createdDate.getMonth()] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
 
       var updatedDate = new Date(announcement.updated_at);
       var updatedTimeToString = updatedDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
 
-      var updated_at = this.monthToString[updatedDate.getMonth() + 1] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + updatedTimeToString;
+      var updated_at = this.monthToString[updatedDate.getMonth()] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + updatedTimeToString;
 
       this.eachAnnouncement.id = announcement.id;
       this.eachAnnouncement.title = announcement.title;
@@ -49022,12 +49036,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     populateAnnouncementDetails: function populateAnnouncementDetails() {
       var createdDate = new Date(this.announcements[0].created_at);
       var createdTimeToString = createdDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
-      var created_at = this.monthToString[createdDate.getMonth() + 1] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
+      var created_at = this.monthToString[createdDate.getMonth()] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
 
       var updatedDate = new Date(this.announcements[0].updated_at);
       var timeToString = updatedDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
 
-      var updated_at = this.monthToString[updatedDate.getMonth() + 1] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + timeToString;
+      var updated_at = this.monthToString[updatedDate.getMonth()] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + timeToString;
 
       this.eachAnnouncement.id = this.announcements[0].id;
       this.eachAnnouncement.title = this.announcements[0].title;
@@ -49067,14 +49081,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { attrs: { id: "announcements-list-container" } },
+    { attrs: { id: "all-lists-list-container" } },
     [
       _vm.showModal
         ? _c("modal", {
             attrs: {
               anntitle: _vm.eachAnnouncement.title,
               anndesc: _vm.eachAnnouncement.description,
-              annimagesrc: _vm.image_src
+              annimagesrc: _vm.image_src,
+              modalTitle: "Announcement"
             },
             on: {
               close: function($event) {
@@ -49190,9 +49205,9 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "announcements-list-content" }, [
+      _c("div", { staticClass: "all-lists-list-content" }, [
         _c("ul", [
-          _c("li", { staticClass: "announcements-list-left-panel" }, [
+          _c("li", { staticClass: "all-lists-list-left-panel" }, [
             _c(
               "div",
               { staticClass: "all-announcement-container" },
@@ -49245,7 +49260,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("li", { staticClass: "announcements-list-right-panel" }, [
+          _c("li", { staticClass: "all-lists-list-right-panel" }, [
             _c("div", { staticClass: "announcement-detail-container" }, [
               _vm._m(0),
               _vm._v(" "),
@@ -49349,7 +49364,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(51)
 /* template */
@@ -49451,8 +49466,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['anntitle', 'anndesc', 'annimagesrc'],
-
+  props: ['anntitle', 'anndesc', 'annimagesrc', 'modalTitle'],
   data: function data() {
     return {
       title: '',
@@ -49491,7 +49505,7 @@ var render = function() {
     _c("div", { staticClass: "modal-mask" }, [
       _c("div", { staticClass: "modal-wrapper" }, [
         _c("div", { staticClass: "modal-container" }, [
-          _c("h2", [_vm._v("Edit Announcement")]),
+          _c("h2", [_vm._v("Edit " + _vm._s(_vm.modalTitle))]),
           _vm._v(" "),
           _c(
             "div",
@@ -49601,24 +49615,14 @@ if (false) {
 
 /***/ }),
 /* 53 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 54 */,
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(59)
+var __vue_script__ = __webpack_require__(54)
 /* template */
-var __vue_template__ = __webpack_require__(60)
+var __vue_template__ = __webpack_require__(55)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -49657,7 +49661,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49694,7 +49698,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 60 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49751,15 +49755,15 @@ if (false) {
 }
 
 /***/ }),
-/* 61 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(62)
+var __vue_script__ = __webpack_require__(57)
 /* template */
-var __vue_template__ = __webpack_require__(63)
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -49798,7 +49802,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 62 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49835,7 +49839,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
-/* 63 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -49888,6 +49892,731 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-09cacc44", module.exports)
+  }
+}
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(65)
+/* template */
+var __vue_template__ = __webpack_require__(66)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\BulletinComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0660c4a2", Component.options)
+  } else {
+    hotAPI.reload("data-v-0660c4a2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      bulletins: [],
+      eachBulletin: {
+        id: 'No Selected ID',
+        title: 'No Selected Title',
+        who: 'No Selected Title',
+        what: 'No Selected Title',
+        where: 'No Selected Title',
+        when: 'No Selected Title',
+        description: 'No Selected Description',
+        created_at: 'No Selected Created On',
+        updated_at: 'No Selected Updated On'
+      },
+      monthToString: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      isShowModal: false,
+      showMessageModal: false,
+      showConfirmModal: false,
+      isDisabled: true,
+      edited: {
+        title: '',
+        who: '',
+        what: '',
+        where: '',
+        when: '',
+        description: ''
+      },
+      image_src: ''
+    };
+  },
+  created: function created() {
+    this.getBulletin();
+  },
+
+  methods: {
+    getBulletin: function getBulletin() {
+      var _this = this;
+
+      axios.get('/admin/get-bulletins').then(function (response) {
+        _this.bulletins = response.data;
+        _this.populateBulletinDetails();
+      });
+    },
+    selectOne: function selectOne(bulletin) {
+
+      var createdDate = new Date(bulletin.created_at);
+      var createdTimeToString = createdDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+      var created_at = this.monthToString[createdDate.getMonth()] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
+
+      var updatedDate = new Date(bulletin.updated_at);
+      var updatedTimeToString = updatedDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+
+      var updated_at = this.monthToString[updatedDate.getMonth()] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + updatedTimeToString;
+
+      this.eachBulletin.id = bulletin.id;
+      this.eachBulletin.title = bulletin.title;
+      this.eachBulletin.who = bulletin.who;
+      this.eachBulletin.what = bulletin.what;
+      this.eachBulletin.where = bulletin.where;
+      this.eachBulletin.when = bulletin.when;
+      this.eachBulletin.description = bulletin.description;
+      this.eachBulletin.created_at = created_at;
+      this.eachBulletin.updated_at = updated_at;
+    },
+    confirmDelete: function confirmDelete() {
+      this.showConfirmModal = true;
+    },
+    deleteSelected: function deleteSelected(id) {
+      var _this2 = this;
+
+      this.showConfirmModal = false;
+      axios.delete('/admin/delete-bulletin/' + id).then(function (response) {
+        _this2.getBulletin();
+        _this2.populateAnnouncementDetails();
+      }).catch(function (e) {
+        console.log(e);
+      });
+    },
+    populateBulletinDetails: function populateBulletinDetails() {
+      var createdDate = new Date(this.bulletins[0].created_at);
+      var createdTimeToString = createdDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+      var created_at = this.monthToString[createdDate.getMonth()] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
+
+      var updatedDate = new Date(this.bulletins[0].updated_at);
+      var timeToString = updatedDate.toLocaleString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric' });
+
+      var updated_at = this.monthToString[updatedDate.getMonth()] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + timeToString;
+
+      this.eachBulletin.id = this.bulletins[0].id;
+      this.eachBulletin.title = this.bulletins[0].title;
+      this.eachBulletin.who = this.bulletins[0].who;
+      this.eachBulletin.what = this.bulletins[0].what;
+      this.eachBulletin.where = this.bulletins[0].where;
+      this.eachBulletin.when = this.bulletins[0].when;
+      this.eachBulletin.description = this.bulletins[0].description;
+      this.eachBulletin.created_at = created_at;
+      this.eachBulletin.updated_at = updated_at;
+    },
+    updateBulletin: function updateBulletin(id) {
+      var _this3 = this;
+
+      if (this.edited.title == '') {
+        this.edited.title = this.eachBulletin.title;
+      }
+
+      if (this.edited.who == '') {
+        this.edited.who = this.eachBulletin.who;
+      }
+
+      if (this.edited.what == '') {
+        this.edited.what = this.eachBulletin.what;
+      }
+
+      if (this.edited.where == '') {
+        this.edited.where = this.eachBulletin.where;
+      }
+
+      if (this.edited.when == '') {
+        this.edited.when = this.eachBulletin.when;
+      }
+
+      if (this.edited.description == '') {
+        this.edited.description = this.eachBulletin.description;
+      }
+
+      this.isShowModal = false;
+
+      axios.put('/admin/edit-bulletin/' + id, this.edited).then(function (response) {
+        _this3.getBulletin();
+      });
+    },
+    successMessage: function successMessage() {
+      this.showMessageModal = true;
+    },
+    changeTitle: function changeTitle(event) {
+      this.isDisabled = false;
+      this.edited.title = event.target.value;
+    },
+    changeWho: function changeWho(event) {
+      this.isDisabled = false;
+      this.edited.who = event.target.value;
+    },
+    changeWhat: function changeWhat(event) {
+      this.isDisabled = false;
+      this.edited.what = event.target.value;
+    },
+    changeWhere: function changeWhere(event) {
+      this.isDisabled = false;
+      this.edited.where = event.target.value;
+    },
+    changeWhen: function changeWhen(event) {
+      this.isDisabled = false;
+      this.edited.when = event.target.value;
+    },
+    changeDesc: function changeDesc(event) {
+      this.isDisabled = false;
+      this.edited.description = event.target.value;
+    },
+    sampleClick: function sampleClick() {
+      alert('You have clicked me. Oh Yeah!');
+    }
+  }
+});
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "all-lists-list-container" } },
+    [
+      _vm.isShowModal
+        ? _c("modal", { attrs: { modalTitle: "Bulletin" } }, [
+            _c("div", { attrs: { slot: "header" }, slot: "header" }, [
+              _c("div", { attrs: { id: "form-holder" } }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "uk-grid-small uk-child-width-expand@s",
+                    attrs: { "uk-grid": "" }
+                  },
+                  [
+                    _c("div", [
+                      _c("input", {
+                        staticClass: "uk-input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Title",
+                          name: "title"
+                        },
+                        domProps: { value: _vm.eachBulletin.title },
+                        on: { input: _vm.changeTitle }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "uk-grid-small uk-child-width-expand@s",
+                    attrs: { "uk-grid": "" }
+                  },
+                  [
+                    _c("div", [
+                      _c("input", {
+                        staticClass: "uk-input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Who",
+                          name: "who"
+                        },
+                        domProps: { value: _vm.eachBulletin.who },
+                        on: { input: _vm.changeWho }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        staticClass: "uk-input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "What",
+                          name: "what"
+                        },
+                        domProps: { value: _vm.eachBulletin.what },
+                        on: { input: _vm.changeWhat }
+                      })
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "uk-grid-small uk-child-width-expand@s",
+                    attrs: { "uk-grid": "" }
+                  },
+                  [
+                    _c("div", [
+                      _c("input", {
+                        staticClass: "uk-input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Where",
+                          name: "where"
+                        },
+                        domProps: { value: _vm.eachBulletin.where },
+                        on: { input: _vm.changeWhere }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        staticClass: "uk-input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Where",
+                          name: "where"
+                        },
+                        domProps: { value: _vm.eachBulletin.when },
+                        on: { input: _vm.changeWhen }
+                      })
+                    ])
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+              _c("textarea", {
+                staticClass: "uk-textarea",
+                attrs: {
+                  name: "description",
+                  placeholder: "Description(Optional)"
+                },
+                on: { input: _vm.changeDesc }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { attrs: { slot: "footer" }, slot: "footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  attrs: { disabled: _vm.isDisabled },
+                  on: {
+                    click: function($event) {
+                      _vm.updateBulletin(_vm.eachBulletin.id)
+                    }
+                  }
+                },
+                [_vm._v("Save")]
+              ),
+              _vm._v(" | \n            "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  on: {
+                    click: function($event) {
+                      _vm.isShowModal = false
+                    }
+                  }
+                },
+                [_vm._v("\n              Close\n            ")]
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showConfirmModal
+        ? _c(
+            "confirm-modal",
+            {
+              on: {
+                close: function($event) {
+                  _vm.showConfirmModal = false
+                }
+              }
+            },
+            [
+              _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+                _c("h4", [
+                  _vm._v("Are you sure you want to delete this Bulletin?")
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticStyle: { margin: "0 auto" },
+                  attrs: { slot: "footer" },
+                  slot: "footer"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          _vm.deleteSelected(_vm.eachBulletin.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      on: {
+                        click: function($event) {
+                          _vm.showConfirmModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ]
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "all-lists-list-content" }, [
+        _c("ul", [
+          _c("li", { staticClass: "all-lists-list-left-panel" }, [
+            _c(
+              "div",
+              { staticClass: "all-announcement-container" },
+              [
+                _vm._l(_vm.bulletins, function(bulletin) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass: "each-announcement-container",
+                      on: {
+                        click: function($event) {
+                          _vm.selectOne(bulletin)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "announcement-title" }, [
+                        _c(
+                          "span",
+                          {
+                            on: {
+                              click: function($event) {
+                                _vm.sampleClick()
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(bulletin.title))]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "announcement-description" }, [
+                        _c("p", [_vm._v(_vm._s(bulletin.description))]),
+                        _vm._v(" "),
+                        !bulletin.description
+                          ? _c("p", [_vm._v("No description.")])
+                          : _vm._e()
+                      ])
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _vm.bulletins.length === 0
+                  ? _c("div", { staticClass: "each-announcement-container" }, [
+                      _vm._v(
+                        "\n            No Bulletins Created Yet!\n          "
+                      )
+                    ])
+                  : _vm._e()
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "all-lists-list-right-panel" }, [
+            _c("div", { staticClass: "announcement-detail-container" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "detail-body" }, [
+                _c("p", [
+                  _c("strong", [_vm._v("Title:")]),
+                  _vm._v(" " + _vm._s(_vm.eachBulletin.title))
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [_vm._v("Who:")]),
+                  _vm._v(" " + _vm._s(_vm.eachBulletin.who))
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [_vm._v("What:")]),
+                  _vm._v(" " + _vm._s(_vm.eachBulletin.what))
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [_vm._v("Where:")]),
+                  _vm._v(" " + _vm._s(_vm.eachBulletin.where))
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _c("strong", [_vm._v("When:")]),
+                  _vm._v(" " + _vm._s(_vm.eachBulletin.when))
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c("div", { staticClass: "detail-footer" }, [
+                _c("div", { staticClass: "announcement-button-container" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      on: {
+                        click: function($event) {
+                          ;(_vm.isShowModal = true), (_vm.isDisabled = true)
+                        }
+                      }
+                    },
+                    [_vm._v("Edit")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          _vm.confirmDelete()
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "detail-heading" }, [
+      _c("h4", { staticClass: "detail-title" }, [_vm._v("Bulletin Details")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_c("strong", [_vm._v("Posted by:")]), _vm._v(" ADMIN")])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0660c4a2", module.exports)
   }
 }
 

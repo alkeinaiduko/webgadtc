@@ -119,7 +119,14 @@ body, html {
 	height: 40px;
 	margin-top: 5px;
 	color: #fff;
+	transition: all 0.3s ease-in-out;
 }
+
+#admin-side-nav > .side-navbars li:hover {
+	background: #4586ff;
+	transition: all 0.3s ease-in-out;
+}
+
 #admin-side-nav > .side-navbars li.active {
 	background: #4586ff;
 }
@@ -295,4 +302,15 @@ body, html {
 	background: url('/images/success-icon-1.png') no-repeat;
 	background-size: contain;
 	margin: 0 auto;
+}
+
+#preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preview img {
+  max-width: 300px;
+  max-height: 500px;
 }
