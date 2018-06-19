@@ -66,7 +66,7 @@ body, html {
 
 /* SIDE NAVIGATION BARS */
 #admin-side-nav {
-	width: 15%;
+	width: 200px;
 	background: #233444;
 	height: 100vh;
 	position: fixed;
@@ -151,5 +151,9 @@ body, html {
 }
 
 #form-holder input {
-	width: 40%;
+	width: 100%;
+}
+
+#form-holder input.bulletin-title {
+	
 }

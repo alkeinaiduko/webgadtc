@@ -19,8 +19,8 @@
 					<div class="add-new-component is-open">
 						<ul>
 							<li class="active"><i class="material-icons">add</i><a href="{{route('announcement.page')}}">Announcement</a></li>
-							<li><i class="material-icons">add</i><a href="#">Bulletin</a></li>
-							<li><i class="material-icons">perm_identity</i><a href="#">User</a></li>
+							<li><i class="material-icons">add</i><a href="{{route('bulletin.page')}}">Bulletin</a></li>
+							<li><i class="material-icons">perm_identity</i><a href="{{route('user.page')}}">User</a></li>
 						</ul>
 					</div>
 					<li><i class="material-icons">web_asset</i><a href="#">Announcements</a></li>
@@ -39,30 +39,21 @@
 							<legend class="uk-legend">Add New Announcement</legend>
 
 							<div class="uk-margin announcement-title">
-								<input class="uk-input" type="text" placeholder="Announcement Title" name="title">
+								<input class="uk-input" type="text" placeholder="Announcement Title" name="title" value="{{old('title')}}">
 							</div>
 
 							<div class="uk-margin">
-								<textarea class="uk-textarea" rows="5" placeholder="Announcement description" name="description"></textarea>
+								<textarea class="uk-textarea" rows="5" placeholder="Announcement description" name="description" value="{{old('title')}}"></textarea>
 							</div>
 
 							<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
 								<label><button class="uk-button uk-button-primary">Post</button></label>
 							</div>
-
 						</fieldset>
 					</form>
-
-					@if(session('success'))
-						<div class="uk-alert-success" uk-alert>
-						    <a class="uk-alert-close" uk-close></a>
-						    <p>{{session('success')}}</p>
-						</div>
-					@endif
+					@include('admin-layouts.partials.messages')
 				</div>
 			</div>
 		</section>
 	</div>
-
-
 @endsection

@@ -10,4 +10,14 @@ class AdminPagesController extends Controller
    {
 	return view('admin-layouts.add-announcement');
    }
+
+   public function showAddBulletinPage()
+   {
+   	return view('admin-layouts.add-bulletin');
+   }
+
+   public function showAddUserPage()
+   {
+   	return view('admin-layouts.add-user');
+   }
 }
