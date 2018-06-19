@@ -1,0 +1,58 @@
+$dark-gray: #edeeef;
+
+body {
+	font-size: 14px;
+}
+
+#admin-header {
+	height: 50px;
+	width: 100%;
+	position: sticky;
+	background: $dark-gray;
+
+	.admin-header-container {
+		height: 100%;
+		width: 100%;
+
+		.admin-header-content {
+			padding: 20px;
+
+			h3 {
+				float: left;
+			}
+
+			ul {
+				float: right;
+			}
+
+			ul li {
+				float: left;
+				list-style: none;
+				padding-left: 5px; 
+			}
+		}
+	}
+}
+
+#admin-header::after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+
+#admin-panel {
+	display: flex;
+
+	.admin-side-nav-container {
+		flex: 1;
+		background: black;
+		height: 100vh;
+	}
+
+	.admin-main-container {
+		flex: 3;
+		background: coral;
+		height: auto;
+	}
+}
