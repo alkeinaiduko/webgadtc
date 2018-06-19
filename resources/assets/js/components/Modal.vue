@@ -3,7 +3,7 @@
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-          <h2>Edit Announcement</h2>
+          <h2>Edit {{modalTitle}}</h2>
           
           <div class="modal-body">
             <div><h4>Title</h4></div>
@@ -52,8 +52,7 @@
 <script type="text/javascript">
 
   export default {
-    props: ['anntitle', 'anndesc', 'annimagesrc'],
-
+    props: ['anntitle', 'anndesc', 'annimagesrc', 'modalTitle'],
     data() {
       return {
         title: '',

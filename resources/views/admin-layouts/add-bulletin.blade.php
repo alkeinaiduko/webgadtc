@@ -16,7 +16,7 @@
 						</ul>
 					</div>
 					<a href="{{route('show.announcements')}}"><li><i class="material-icons">web_asset</i>Announcements</li></a>
-					<li><i class="material-icons">list</i><a href="#">Bulletin</a></li>
+					<a href="{{route('show.bulletins')}}"><li><i class="material-icons">list</i>Bulletin</li></a>
 				</ul>
 			</div>
 		</section>

@@ -1,7 +1,7 @@
 <template>
 
-  <div id="announcements-list-container">
-    <modal v-if="showModal" @close="showModal = false" :anntitle="eachAnnouncement.title" :anndesc="eachAnnouncement.description" :annimagesrc="image_src" @descChanged="edited.description = $event, successMessage()" @titleChanged="edited.title = $event, updateAnn(eachAnnouncement.id)">
+  <div id="all-lists-list-container">
+    <modal v-if="showModal" @close="showModal = false" :anntitle="eachAnnouncement.title" :anndesc="eachAnnouncement.description" :annimagesrc="image_src" @descChanged="edited.description = $event, successMessage()" @titleChanged="edited.title = $event, updateAnn(eachAnnouncement.id)" :modalTitle="'Announcement'">
     </modal>
 
     <success-modal v-if="showMessageModal" @close="showMessageModal = false">
@@ -42,9 +42,9 @@
       </div>
     </confirm-modal>
 
-    <div class="announcements-list-content">
+    <div class="all-lists-list-content">
       <ul>
-        <li class="announcements-list-left-panel">
+        <li class="all-lists-list-left-panel">
           <div class="all-announcement-container">
             <div class="each-announcement-container" v-for="announcement in announcements" @click="selectOne(announcement)">
               <div class="announcement-title">
@@ -64,7 +64,7 @@
           </div>
         </li>
 
-        <li class="announcements-list-right-panel">
+        <li class="all-lists-list-right-panel">
           <div class="announcement-detail-container">
             <div class="detail-heading">
               <h4 class="detail-title">Announcement Details</h4>
@@ -130,14 +130,14 @@
 
           let createdDate = new Date(announcement.created_at);
           let createdTimeToString = createdDate.toLocaleString('en-US', { hour: 'numeric', hour12: true , minute: 'numeric'});
-          let created_at = this.monthToString[createdDate.getMonth()+1] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
+          let created_at = this.monthToString[createdDate.getMonth()] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
 
 
 
           let updatedDate = new Date(announcement.updated_at);
           let updatedTimeToString = updatedDate.toLocaleString('en-US', { hour: 'numeric', hour12: true , minute: 'numeric'});
 
-          let updated_at = this.monthToString[updatedDate.getMonth()+1] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + updatedTimeToString;
+          let updated_at = this.monthToString[updatedDate.getMonth()] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + updatedTimeToString;
 
 
           this.eachAnnouncement.id = announcement.id;
@@ -166,12 +166,12 @@
         populateAnnouncementDetails() {
           let createdDate = new Date(this.announcements[0].created_at);
           let createdTimeToString = createdDate.toLocaleString('en-US', { hour: 'numeric', hour12: true , minute: 'numeric'});
-          let created_at = this.monthToString[createdDate.getMonth()+1] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
+          let created_at = this.monthToString[createdDate.getMonth()] + ' ' + createdDate.getDate() + ', ' + createdDate.getFullYear() + ' at ' + createdTimeToString;
 
           let updatedDate = new Date(this.announcements[0].updated_at);
           let timeToString = updatedDate.toLocaleString('en-US', { hour: 'numeric', hour12: true , minute: 'numeric'});
 
-          let updated_at = this.monthToString[updatedDate.getMonth()+1] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + timeToString;
+          let updated_at = this.monthToString[updatedDate.getMonth()] + ' ' + updatedDate.getDate() + ', ' + updatedDate.getFullYear() + ' at ' + timeToString;
 
           this.eachAnnouncement.id = this.announcements[0].id;
           this.eachAnnouncement.title = this.announcements[0].title;

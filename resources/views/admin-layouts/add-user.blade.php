@@ -16,7 +16,7 @@
 						</ul>
 					</div>
 					<a href="{{route('show.announcements')}}"><li><i class="material-icons">web_asset</i>Announcements</li></a>
-					<li><i class="material-icons">list</i><a href="#">Bulletin</a></li>
+					<a href="{{route('show.bulletins')}}"><li><i class="material-icons">list</i>Bulletin</li></a>
 				</ul>
 			</div>
 		</section>
@@ -51,7 +51,7 @@
 									<input class="uk-input" type="text" name="lastname" placeholder="Last Name" required>
 								</div>
 								<div class="uk-width-1-3">
-									<birthdate-component></birthdate-component>
+									<birthdate-component autocomplete="off"></birthdate-component>
 								</div>
 								<div class="uk-width-1-3">
 									<input class="uk-input" type="text" name="sex" placeholder="Sex" required>

@@ -10495,30 +10495,30 @@ h6 {
   width: 100%;
 }
 
-#announcements-list-container {
+#all-lists-list-container {
   padding: 10px;
   height: 100%;
 }
 
-#announcements-list-container .announcements-list-content {
+#all-lists-list-container .all-lists-list-content {
   width: 100%;
   height: 100%;
 }
 
-#announcements-list-container .announcements-list-content ul {
+#all-lists-list-container .all-lists-list-content ul {
   list-style: none;
 }
 
-#announcements-list-container .announcements-list-content ul li {
+#all-lists-list-container .all-lists-list-content ul li {
   float: left;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-left-panel {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-left-panel {
   width: 65%;
   height: 100%;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-left-panel .each-announcement-container {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-left-panel .each-announcement-container {
   padding: 10px;
   width: 100%;
   height: auto;
@@ -10529,7 +10529,7 @@ h6 {
   transition: .5s ease;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-left-panel .each-announcement-container .announcement-title {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-left-panel .each-announcement-container .announcement-title {
   font-size: 21px;
   height: 30px;
   line-height: 43px;
@@ -10538,22 +10538,22 @@ h6 {
   width: 100%;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-left-panel .each-announcement-container .announcement-description {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-left-panel .each-announcement-container .announcement-description {
   word-wrap: break-word;
   white-space: normal;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-left-panel .all-announcement-container {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-left-panel .all-announcement-container {
   border-right: 2px solid #e2e2e2;
   height: 100%;
   padding-right: 10px;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-right-panel {
   width: 35%;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-right-panel .announcement-detail-container {
   position: fixed;
   width: 29%;
   right: 19px;
@@ -10564,48 +10564,48 @@ h6 {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-heading {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-right-panel .announcement-detail-container .detail-heading {
   background-color: #f39c12;
   padding: 15px;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container h4 {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-right-panel .announcement-detail-container h4 {
   margin-bottom: 0;
   color: #fff;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-body {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-right-panel .announcement-detail-container .detail-body {
   padding: 15px;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-footer {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-right-panel .announcement-detail-container .detail-footer {
   padding: 10px;
   width: 100%;
   text-align: center;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-footer .announcement-button-container {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-right-panel .announcement-detail-container .detail-footer .announcement-button-container {
   width: 90%;
   margin: 0 auto;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-footer button {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-right-panel .announcement-detail-container .detail-footer button {
   width: 45%;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-footer .btn-danger {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-right-panel .announcement-detail-container .detail-footer .btn-danger {
   background-color: #FA2A00;
 }
 
-#announcements-list-container .announcements-list-content ul li.announcements-list-right-panel .announcement-detail-container .detail-footer .btn-success {
+#all-lists-list-container .all-lists-list-content ul li.all-lists-list-right-panel .announcement-detail-container .detail-footer .btn-success {
   background-color: #2ecc71;
 }
 
-#announcements-list-container .announcements-list-content hr {
+#all-lists-list-container .all-lists-list-content hr {
   margin-bottom: 10px;
 }
 
-#announcements-list-container::after {
+#all-lists-list-container::after {
   display: block;
   content: "";
   clear: both;
@@ -10740,6 +10740,14 @@ html {
   height: 40px;
   margin-top: 5px;
   color: #fff;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#admin-side-nav > .side-navbars li:hover {
+  background: #4586ff;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 #admin-side-nav > .side-navbars li.active {
@@ -10917,6 +10925,23 @@ html {
   background: url("/images/success-icon-1.png") no-repeat;
   background-size: contain;
   margin: 0 auto;
+}
+
+#preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#preview img {
+  max-width: 300px;
+  max-height: 500px;
 }
 
 .navbar-laravel {
