@@ -49073,7 +49073,8 @@ var render = function() {
         ? _c("modal", {
             attrs: {
               anntitle: _vm.eachAnnouncement.title,
-              anndesc: _vm.eachAnnouncement.description
+              anndesc: _vm.eachAnnouncement.description,
+              annimagesrc: _vm.image_src
             },
             on: {
               close: function($event) {
@@ -49435,10 +49436,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['anntitle', 'anndesc'],
+  props: ['anntitle', 'anndesc', 'annimagesrc'],
 
   data: function data() {
     return {
@@ -49509,7 +49522,30 @@ var render = function() {
                   attrs: { name: "description" },
                   domProps: { value: _vm.anndesc },
                   on: { input: _vm.changeDesc }
-                })
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "uk-margin" }, [
+                  _c("h4", [_vm._v("Announcement Cover")]),
+                  _vm._v(" "),
+                  _c("div", { attrs: { "uk-form-custom": "target: true" } }, [
+                    _c("input", {
+                      attrs: { type: "file", name: "announcement_image" }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "uk-input uk-form-width-medium",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Edit Photo",
+                        disabled: ""
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "uk-margin" }, [
+                  _c("img", { attrs: { width: "200px", src: _vm.annimagesrc } })
+                ])
               ])
             ],
             2

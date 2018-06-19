@@ -1,7 +1,7 @@
 <template>
 
   <div id="announcements-list-container">
-    <modal v-if="showModal" @close="showModal = false" :anntitle="eachAnnouncement.title" :anndesc="eachAnnouncement.description" @descChanged="edited.description = $event, successMessage()" @titleChanged="edited.title = $event, updateAnn(eachAnnouncement.id)">
+    <modal v-if="showModal" @close="showModal = false" :anntitle="eachAnnouncement.title" :anndesc="eachAnnouncement.description" :annimagesrc="image_src" @descChanged="edited.description = $event, successMessage()" @titleChanged="edited.title = $event, updateAnn(eachAnnouncement.id)">
     </modal>
 
     <success-modal v-if="showMessageModal" @close="showMessageModal = false">

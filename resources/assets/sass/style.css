@@ -216,6 +216,7 @@ body, html {
 
 .modal-container {
   width: 75%;
+  max-height: 550px;
   height: auto;
   margin: 0px auto;
   padding: 20px 30px;
@@ -224,6 +225,7 @@ body, html {
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
+  overflow-y: auto;
 }
 
 .modal-container textarea {

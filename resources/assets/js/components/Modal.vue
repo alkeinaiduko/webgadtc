@@ -17,6 +17,18 @@
             <h4>Description</h4>
             <slot name="body">
               <textarea class="uk-textarea" name="description" :value="anndesc" @input="changeDesc"></textarea>
+
+              <div class="uk-margin">
+                <h4>Announcement Cover</h4>
+                <div uk-form-custom="target: true">
+                    <input type="file" name="announcement_image">
+                    <input class="uk-input uk-form-width-medium" type="text" placeholder="Edit Photo" disabled>
+                </div>
+              </div>
+              <div class="uk-margin">
+                
+                <img width="200px" :src="annimagesrc">
+              </div>
             </slot>
           </div>
 
@@ -40,7 +52,7 @@
 <script type="text/javascript">
 
   export default {
-    props: ['anntitle', 'anndesc'],
+    props: ['anntitle', 'anndesc', 'annimagesrc'],
 
     data() {
       return {
