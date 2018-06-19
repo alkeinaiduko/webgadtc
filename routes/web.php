@@ -28,10 +28,10 @@ Route::prefix('admin')->group(function() {
 	Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
 	// ADMIN PAGES
-	Route::get('/announcement-page', 'AdminPagesController@showAddAnnouncementPage')->name('announcement.page');
+	Route::get('/announcement-page', 'AdminPagesController@showAddAnnouncementPage')->name('announcement.page')->middleware('auth:admin');
 
-	Route::get('/bulletin-page', 'AdminPagesController@showAddBulletinPage')->name('bulletin.page');
-	Route::get('/user-page', 'AdminPagesController@showAddUserPage')->name('user.page');
+	Route::get('/bulletin-page', 'AdminPagesController@showAddBulletinPage')->name('bulletin.page')->middleware('auth:admin');
+	Route::get('/user-page', 'AdminPagesController@showAddUserPage')->name('user.page')->middleware('auth:admin');
 
 	// ADMIN POST FUNCTION
 	Route::post('/post-announcement', 'AdminStoreController@postAnnouncement')->name('post.announcement');
@@ -41,8 +41,8 @@ Route::prefix('admin')->group(function() {
 
 	// ANNOUNCEMENTS CONTROLLER
 
-	Route::get('/get-announcements', 'AdminAnnouncementsController@getAnnouncements')->name('get.announcements');
-	Route::get('/show-announcements-page', 'AdminAnnouncementsController@index')->name('show.announcements');
+	Route::get('/get-announcements', 'AdminAnnouncementsController@getAnnouncements')->name('get.announcements')->middleware('auth:admin');
+	Route::get('/show-announcements-page', 'AdminAnnouncementsController@index')->name('show.announcements')->middleware('auth:admin');
 	Route::delete('/delete-announcement/{id}', 'AdminAnnouncementsController@destroy')->name('delete.announcement');
 	Route::put('/edit/{id}', 'AdminAnnouncementsController@update')->name('edit.announcement');
 

@@ -117,6 +117,11 @@ h1, h2, h3, h4, h5, h6 {
 					    font-weight: 700;
 					    width: 100%;
 					}
+
+					.announcement-description {
+						word-wrap: break-word;
+						white-space: normal;
+					}
 				}
 
 				.all-announcement-container {
@@ -132,6 +137,7 @@ h1, h2, h3, h4, h5, h6 {
 				.announcement-detail-container {
 					position: fixed;
 					width: 29%;
+					right: 19px;
 					border: 1px solid $gray-border;
 					background-color: #f9f9f9;
 					border-radius: 5px;

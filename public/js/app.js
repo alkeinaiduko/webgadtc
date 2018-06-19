@@ -15319,6 +15319,8 @@ Vue.component('date-component', __webpack_require__(41));
 Vue.component('birthdate-component', __webpack_require__(44));
 Vue.component('announcement-component', __webpack_require__(47));
 Vue.component('modal', __webpack_require__(50));
+Vue.component('success-modal', __webpack_require__(58));
+Vue.component('confirm-modal', __webpack_require__(61));
 
 var app = new Vue({
   el: '#app'
@@ -48911,6 +48913,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -48924,6 +48969,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         updated_at: 'No Selected Updated On'
       },
       showModal: false,
+      showMessageModal: false,
+      showConfirmModal: false,
       edited: {
         title: '',
         description: ''
@@ -48940,6 +48987,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       axios.get('/admin/get-announcements').then(function (response) {
         _this.announcements = response.data;
+        _this.populateAnnouncementDetails();
       });
     },
     selectOne: function selectOne(announcement) {
@@ -48949,15 +48997,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.eachAnnouncement.created_at = announcement.created_at;
       this.eachAnnouncement.updated_at = announcement.updated_at;
     },
+    confirmDelete: function confirmDelete() {
+      this.showConfirmModal = true;
+    },
     deleteSelected: function deleteSelected(id) {
       var _this2 = this;
 
       axios.delete('/admin/delete-announcement/' + id).then(function (response) {
-        alert('announcement deleted');
         _this2.getAnnouncement();
+        _this2.showConfirmModal = false;
+
+        _this2.populateAnnouncementDetails();
+
+        // console.log(this.announcements);
       }).catch(function (e) {
         console.log(e);
       });
+    },
+    populateAnnouncementDetails: function populateAnnouncementDetails() {
+      this.eachAnnouncement.id = this.announcements[0].id;
+      this.eachAnnouncement.title = this.announcements[0].title;
+      this.eachAnnouncement.description = this.announcements[0].description;
+      this.eachAnnouncement.created_at = this.announcements[0].created_at;
+      this.eachAnnouncement.updated_at = this.announcements[0].updated_at;
     },
     updateAnn: function updateAnn(id) {
       var _this3 = this;
@@ -48976,6 +49038,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(response.data);
         _this3.getAnnouncement();
       });
+    },
+    successMessage: function successMessage() {
+      this.showMessageModal = true;
     }
   }
 });
@@ -49003,7 +49068,7 @@ var render = function() {
                 _vm.showModal = false
               },
               descChanged: function($event) {
-                _vm.edited.description = $event
+                ;(_vm.edited.description = $event), _vm.successMessage()
               },
               titleChanged: function($event) {
                 ;(_vm.edited.title = $event),
@@ -49013,47 +49078,157 @@ var render = function() {
           })
         : _vm._e(),
       _vm._v(" "),
+      _vm.showMessageModal
+        ? _c(
+            "success-modal",
+            {
+              on: {
+                close: function($event) {
+                  _vm.showMessageModal = false
+                }
+              }
+            },
+            [
+              _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+                _c("div", { staticClass: "success-icon text-center" }),
+                _vm._v(" "),
+                _c("h1", [_vm._v("Successfully Edited")])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticStyle: { margin: "0 auto" },
+                  attrs: { slot: "footer" },
+                  slot: "footer"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      on: {
+                        click: function($event) {
+                          _vm.showMessageModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Okay")]
+                  )
+                ]
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showConfirmModal
+        ? _c(
+            "confirm-modal",
+            {
+              on: {
+                close: function($event) {
+                  _vm.showConfirmModal = false
+                }
+              }
+            },
+            [
+              _c("div", { attrs: { slot: "body" }, slot: "body" }, [
+                _c("h4", [
+                  _vm._v("Are you sure you want to delete this announcement?")
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticStyle: { margin: "0 auto" },
+                  attrs: { slot: "footer" },
+                  slot: "footer"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          _vm.deleteSelected(_vm.eachAnnouncement.id)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      on: {
+                        click: function($event) {
+                          _vm.showConfirmModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ]
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "announcements-list-content" }, [
         _c("ul", [
           _c("li", { staticClass: "announcements-list-left-panel" }, [
             _c(
               "div",
               { staticClass: "all-announcement-container" },
-              _vm._l(_vm.announcements, function(announcement) {
-                return _c(
-                  "div",
-                  {
-                    staticClass: "each-announcement-container",
-                    on: {
-                      click: function($event) {
-                        _vm.selectOne(announcement)
+              [
+                _vm._l(_vm.announcements, function(announcement) {
+                  return _c(
+                    "div",
+                    {
+                      staticClass: "each-announcement-container",
+                      on: {
+                        click: function($event) {
+                          _vm.selectOne(announcement)
+                        }
                       }
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "announcement-title" }, [
-                      _vm._v(
-                        "\n              " +
-                          _vm._s(announcement.title) +
-                          "\n            "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("hr"),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "announcement-description" }, [
-                      _c("p", [
+                    },
+                    [
+                      _c("div", { staticClass: "announcement-title" }, [
                         _vm._v(
-                          _vm._s(announcement.description.substring(0, 250))
-                        ),
-                        announcement.description.length > 250
-                          ? _c("span", [_vm._v("...")])
-                          : _vm._e()
+                          "\n              " +
+                            _vm._s(announcement.title) +
+                            "\n            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "announcement-description" }, [
+                        _c("p", [
+                          _vm._v(
+                            _vm._s(announcement.description.substring(0, 250))
+                          ),
+                          announcement.description.length > 250
+                            ? _c("span", [_vm._v("...")])
+                            : _vm._e()
+                        ])
                       ])
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _vm.announcements.length === 0
+                  ? _c("div", { staticClass: "each-announcement-container" }, [
+                      _vm._v(
+                        "\n            No Announcement Created Yet!\n          "
+                      )
                     ])
-                  ]
-                )
-              })
+                  : _vm._e()
+              ],
+              2
             )
           ]),
           _vm._v(" "),
@@ -49108,7 +49283,7 @@ var render = function() {
                       staticClass: "btn btn-danger",
                       on: {
                         click: function($event) {
-                          _vm.deleteSelected(_vm.eachAnnouncement.id)
+                          _vm.confirmDelete()
                         }
                       }
                     },
@@ -49372,6 +49547,292 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(59)
+/* template */
+var __vue_template__ = __webpack_require__(60)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\SuccessModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2459a33e", Component.options)
+  } else {
+    hotAPI.reload("data-v-2459a33e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("transition", { attrs: { name: "modal" } }, [
+    _c("div", { staticClass: "modal-mask" }, [
+      _c("div", { staticClass: "modal-wrapper" }, [
+        _c("div", { staticClass: "success-modal-container" }, [
+          _c(
+            "div",
+            { staticClass: "modal-body text-center" },
+            [_vm._t("body")],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "modal-footer text-center" },
+            [
+              _vm._t("footer", [
+                _c("div"),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("close")
+                      }
+                    }
+                  },
+                  [_vm._v("\n              okay\n            ")]
+                )
+              ])
+            ],
+            2
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2459a33e", module.exports)
+  }
+}
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(62)
+/* template */
+var __vue_template__ = __webpack_require__(63)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\ConfirmModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-09cacc44", Component.options)
+  } else {
+    hotAPI.reload("data-v-09cacc44", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("transition", { attrs: { name: "modal" } }, [
+    _c("div", { staticClass: "modal-mask" }, [
+      _c("div", { staticClass: "modal-wrapper" }, [
+        _c("div", { staticClass: "success-modal-container" }, [
+          _c(
+            "div",
+            { staticClass: "modal-body text-center" },
+            [_vm._t("body")],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "modal-footer text-center" },
+            [
+              _vm._t("footer", [
+                _c("div"),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        _vm.$emit("close")
+                      }
+                    }
+                  },
+                  [_vm._v("\n              okay\n            ")]
+                )
+              ])
+            ],
+            2
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-09cacc44", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

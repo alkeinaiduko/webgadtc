@@ -1,7 +1,7 @@
 <template>
 
   <div id="announcements-list-container">
-    <modal v-if="showModal" @close="showModal = false" :anntitle="eachAnnouncement.title" :anndesc="eachAnnouncement.description" @descChanged="edited.description = $event" @titleChanged="edited.title = $event, updateAnn(eachAnnouncement.id)">
+    <modal v-if="showModal" @close="showModal = false" :anntitle="eachAnnouncement.title" :anndesc="eachAnnouncement.description" @descChanged="edited.description = $event, successMessage()" @titleChanged="edited.title = $event, updateAnn(eachAnnouncement.id)">
 
       <!--
         you can use custom content here to overwrite
@@ -11,6 +11,45 @@
 
       <!-- <textarea class="uk-textarea" name="description" slot="body" :value="eachAnnouncement.description"></textarea> -->
     </modal>
+
+    <success-modal v-if="showMessageModal" @close="showMessageModal = false">
+
+      <!--
+        you can use custom content here to overwrite
+        default content
+      -->
+      <!-- <input slot="header" class="uk-input" :value="eachAnnouncement.title"></input> -->
+
+      <!-- <textarea class="uk-textarea" name="description" slot="body" :value="eachAnnouncement.description"></textarea> -->
+      <div slot="body">
+        <div class="success-icon text-center"></div>
+        <h1>Successfully Edited</h1>
+      </div>
+
+      <div slot="footer" style="margin: 0 auto;">
+        <button class="btn btn-success" @click="showMessageModal = false">Okay</button>
+      </div>
+    </success-modal>
+
+    <confirm-modal v-if="showConfirmModal" @close="showConfirmModal = false">
+
+      <!--
+        you can use custom content here to overwrite
+        default content
+      -->
+      <!-- <input slot="header" class="uk-input" :value="eachAnnouncement.title"></input> -->
+
+      <!-- <textarea class="uk-textarea" name="description" slot="body" :value="eachAnnouncement.description"></textarea> -->
+      <div slot="body">
+        <h4>Are you sure you want to delete this announcement?</h4>
+      </div>
+
+      <div slot="footer" style="margin: 0 auto;">
+        <button class="btn btn-danger" @click="deleteSelected(eachAnnouncement.id)">Delete</button>
+        <button class="btn btn-default" @click="showConfirmModal = false">Cancel</button>
+      </div>
+    </confirm-modal>
+
     <div class="announcements-list-content">
       <ul>
         <li class="announcements-list-left-panel">
@@ -24,6 +63,10 @@
                 <p>{{(announcement.description).substring(0, 250)}}<span v-if="announcement.description.length > 250">...</span></p>
 
               </div>
+            </div>
+
+            <div class="each-announcement-container" v-if="announcements.length === 0">
+              No Announcement Created Yet!
             </div>
 
           </div>
@@ -45,7 +88,7 @@
             <div class="detail-footer">
               <div class="announcement-button-container">
                 <button class="btn btn-success" @click="showModal = true">Edit</button>
-                <button class="btn btn-danger" @click="deleteSelected(eachAnnouncement.id)">Delete</button>
+                <button class="btn btn-danger" @click="confirmDelete()">Delete</button>
               </div>
             </div>
           </div>
@@ -68,6 +111,8 @@
             updated_at: 'No Selected Updated On'
           },
           showModal: false,
+          showMessageModal: false,
+          showConfirmModal: false,
           edited: {
             title: '',
             description: ''
@@ -82,6 +127,7 @@
           axios.get('/admin/get-announcements')
             .then((response) => {
             this.announcements = response.data;
+            this.populateAnnouncementDetails();
           });
         },
         selectOne(announcement) {
@@ -92,19 +138,33 @@
           this.eachAnnouncement.updated_at = announcement.updated_at;
           
         },
+        confirmDelete() {
+          this.showConfirmModal = true;
+        },
         deleteSelected(id) {
           axios.delete('/admin/delete-announcement/'+id)
               .then((response) => {
-                  alert('announcement deleted');
-                  this.getAnnouncement();
+                this.getAnnouncement();
+                  this.showConfirmModal = false;
+
+                  this.populateAnnouncementDetails();
+
+                  // console.log(this.announcements);
               })
               .catch((e) => {
                 console.log(e);
               });
         },
+        populateAnnouncementDetails() {
+          this.eachAnnouncement.id = this.announcements[0].id;
+          this.eachAnnouncement.title = this.announcements[0].title;
+          this.eachAnnouncement.description = this.announcements[0].description;
+          this.eachAnnouncement.created_at = this.announcements[0].created_at;
+          this.eachAnnouncement.updated_at = this.announcements[0].updated_at;
+        },
         updateAnn(id) {
           // console.log(newDesc, newTitle);
-
+          
           if(this.edited.title == '') {
             this.edited.title = this.eachAnnouncement.title;
           }
@@ -118,6 +178,10 @@
                 console.log(response.data);
                 this.getAnnouncement();
               });
+
+        },
+        successMessage() {
+          this.showMessageModal = true;
         }
       }
     }
