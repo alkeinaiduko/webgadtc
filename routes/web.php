@@ -37,6 +37,10 @@ Route::prefix('admin')->group(function() {
 	Route::post('/post-announcement', 'AdminStoreController@postAnnouncement')->name('post.announcement');
 	Route::post('/post-bulletin', 'AdminStoreController@postBulletin')->name('post.bulletin');
 	Route::post('/add-student', 'AdminStoreController@addStudent')->name('add.student');
+
+
+	// ANNOUNCEMENTS CONTROLLER
+	Route::get('/get-announcements', 'AdminAnnouncementsController@index')->name('get.announcements');
 });
 
 
