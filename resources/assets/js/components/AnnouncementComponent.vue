@@ -1,7 +1,7 @@
 <template>
 
   <div id="announcements-list-container">
-    <modal v-if="showModal" @close="showModal = false" :anntitle="eachAnnouncement.title" :anndesc="eachAnnouncement.description" @descChanged="newDesc = $event" @titleChanged="newTitle = $event">
+    <modal v-if="showModal" @close="showModal = false" :anntitle="eachAnnouncement.title" :anndesc="eachAnnouncement.description" @descChanged="edited.description = $event" @titleChanged="edited.title = $event, updateAnn(eachAnnouncement.id)">
 
       <!--
         you can use custom content here to overwrite
@@ -67,7 +67,11 @@
             created_at: 'No Selected Created On',
             updated_at: 'No Selected Updated On'
           },
-          showModal: false
+          showModal: false,
+          edited: {
+            title: '',
+            description: ''
+          }
         }
       },
       created() {
@@ -98,8 +102,22 @@
                 console.log(e);
               });
         },
-        updateAnn(newDesc, newTitle) {
-          console.log(newDesc, newTitle);
+        updateAnn(id) {
+          // console.log(newDesc, newTitle);
+
+          if(this.edited.title == '') {
+            this.edited.title = this.eachAnnouncement.title;
+          }
+
+          if(this.edited.description == '') {
+            this.edited.description = this.eachAnnouncement.description;
+          }
+
+          axios.put(`/admin/edit/${id}`, this.edited)
+              .then((response) => {
+                console.log(response.data);
+                this.getAnnouncement();
+              });
         }
       }
     }

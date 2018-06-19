@@ -75,7 +75,18 @@ class AdminAnnouncementsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $edit = [
+            'title' => request('title'),
+            'description' => request('description')
+        ];
+
+        $res = [
+            'success' => 'Announcement Updated Successfully!',
+        ];
+
+        Announcement::findOrFail($id)->update($edit);
+
+        return response()->json($res);
     }
 
     /**
@@ -86,12 +97,6 @@ class AdminAnnouncementsController extends Controller
      */
     public function destroy($id)
     {
-        // $ann = Announcement::find($id);
-
-        // Announcement::delete($ann);
-
-        // return response()->json();
-
         $announcement = Announcement::findOrFail($id);
         $announcement->delete();
         return '';
