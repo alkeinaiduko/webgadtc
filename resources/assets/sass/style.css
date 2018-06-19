@@ -1,0 +1,155 @@
+.wrapper {
+	width: 96%;
+	margin: 0 auto;
+}
+
+.uk-button-primary {
+	background: #10c35d !important;
+}
+
+.uk-button-primary:hover {
+	background: #109a4c !important;
+}
+
+ul, li {
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+	background: #f5f6f8;
+}
+
+#admin-header {
+	height: 50px;
+	background: #fff;
+	position: fixed;
+	width: 100%;
+	z-index: 2;
+	-moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+	box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+#admin-header .profile-pic img {
+	width: 40px;
+	border-radius: 20px;
+	position: relative;
+	bottom: 7px;
+}
+
+#admin-header h3 {
+	float: left;
+	top: 8px;
+	left: 20px;
+	position: relative;
+}
+
+#admin-header ul {
+	float: right;
+	position: relative;
+	right: 20px;
+}
+
+#admin-header ul li {
+	list-style: none;
+	padding: 12px 10px;
+	float: left;
+}
+
+#admin-header::after {
+	display: block;
+	content: "";
+	clear: both; 
+}
+
+
+/* SIDE NAVIGATION BARS */
+#admin-side-nav {
+	width: 15%;
+	background: #233444;
+	height: 100vh;
+	position: fixed;
+}
+
+#admin-side-nav > .side-navbars {
+	padding-top: 55px;
+/*
+	padding-left: 10px;
+	padding-right: 10px;
+*/
+}
+
+#admin-side-nav > .side-navbars li {
+	height: 40px;
+	margin-top: 5px;
+	color: #fff;
+}
+#admin-side-nav > .side-navbars li.active {
+	background: #4586ff;
+}
+
+#admin-side-nav > .side-navbars li > a {
+	color: #fff;
+	padding-left: 5px;
+}
+
+
+#admin-side-nav > .side-navbars li > i {
+	color: #fff;
+	padding-left: 20px;
+	position: relative;
+	top: 5px;
+}
+
+#admin-side-nav > .side-navbars .add-new-component {
+	width: 100%;
+	background: #172736;
+	height: auto;
+	overflow: hidden;
+	box-shadow: 
+        inset 0px 11px 8px -10px #0e1a26,
+        inset 0px -11px 8px -10px #0e1a26;
+}
+
+#admin-side-nav > .side-navbars #add-new {
+	cursor: pointer;
+}
+
+.is-close {
+	height: auto !important;
+}
+
+#admin-side-nav > .side-navbars #add-new-component li {
+	padding-left: 10px;
+}
+
+#admin-holder {
+	display: flex;
+}
+
+#main-content {
+	padding-top: 60px;
+	padding-left: 210px;
+	width: 100%;
+	height: auto;;
+}
+
+.admin-main-content-container {
+	background: #fff;
+	width: 99%;
+	box-shadow: 2px 3px 10px rgba(0,0,0,0.3);
+}
+
+.admin-main-content {
+	padding: 20px;
+}
+
+/* ADMIN ADD NEW */
+.announcement-title {
+	width: 40%;
+}
+
+#form-holder input {
+	width: 40%;
+}
