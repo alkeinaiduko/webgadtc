@@ -8,7 +8,7 @@
 		<section id="admin-side-nav">
 			<div class="side-navbars">
 				<ul>
-					<li class="active"><i class="material-icons">dashboard</i><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+					<a href="{{route('admin.dashboard')}}"><li class="active"><i class="material-icons">dashboard</i>Dashboard</li></a>
 					<li id="add-new"><i class="material-icons">create</i>Add New</li>
 					<div class="add-new-component">
 						<ul>
@@ -18,7 +18,7 @@
 						</ul>
 					</div>
 					<a href="{{route('show.announcements')}}"><li><i class="material-icons">web_asset</i>Announcements</li></a>
-					<li><i class="material-icons">list</i><a href="#">Bulletin</a></li>
+					<a href="{{route('show.bulletins')}}"><li><i class="material-icons">list</i>Bulletin</li></a>
 				</ul>
 			</div>
 		</section>

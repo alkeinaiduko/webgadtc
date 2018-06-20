@@ -6,7 +6,7 @@
 		<section id="admin-side-nav">
 			<div class="side-navbars">
 				<ul>
-					<li><i class="material-icons">dashboard</i><a href="/">Dashboard</a></li>
+					<a href="{{route('admin.dashboard')}}"><li><i class="material-icons">dashboard</i>Dashboard</li></a>
 					<li id="add-new"><i class="material-icons">create</i>Add New</li>
 					<div class="add-new-component is-open">
 						<ul>

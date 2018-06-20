@@ -314,3 +314,356 @@ body, html {
   max-width: 300px;
   max-height: 500px;
 }
+
+/* GLOBAL */
+
+.uk-button-primary {
+	background: #10c35d !important;
+}
+
+.uk-button-primary:hover {
+	background: #109a4c !important;
+}
+
+.slide-right-bg:hover {
+	box-shadow: inset 400px 0 0 0 #5dd073;
+	color: #fff !important;
+}
+
+body, html {
+	background: #f3f3f3;
+
+}
+
+.b-links-container {
+	width: 50%;
+	margin: 0 auto;
+    height: 100%;
+}
+
+/* BORDER */
+
+.border {
+	height: 40px;
+	background: #10c35d;
+	width: 100%;
+}
+
+.border ul > li {
+    float: left;
+    list-style: none;
+    width: 19%;
+    text-align: center;
+    margin-top: 1%;
+    color: #fff;
+}
+
+
+.border ul::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+#site-header {
+	padding: 2px 0;
+	background: #fff;
+	height: 50px;
+}
+
+#site-header nav a {
+	color: #10c35d;
+}
+
+#site-header > .wrapper > div {
+	float: left;
+	margin-top: 5px;
+}
+
+#site-header > .wrapper > nav {
+	float: right;
+	margin-top: 10px;
+}
+
+#site-header > .wrapper > nav > a {
+	padding: 5px 15px;
+}
+
+#site-header > .wrapper::after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+/* SHOWCASE */
+#showcase {
+	height: 400px;
+	background: url('images/banner.jpg') no-repeat;
+	background-size: cover;
+}
+
+#showcase > .showcase-container > .showcase-content > span {
+	font-family: Anton;
+	font-size: 50px;
+	color: #10c35d;
+	margin-bottom: 0;
+}
+
+#showcase > .showcase-container > .showcase-content > p {
+	margin-top: 0;
+	font-size: 40px;
+}
+
+#showcase > .showcase-container {
+	padding: 100px 50px;
+}
+
+/* ANNOUNCEMENTS */
+.site-contents {
+/*	margin: 50px 0px;*/
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.announcement-container {
+	height: auto;
+	min-height: 455px;
+	background: #fff;
+	border: 1px solid rgb(218, 220, 222) !important;
+}
+
+.announcement-container > .announcement-header {
+	width: 100%;
+	height: 35px;
+	padding-top: 4px; 
+	background: #109a4c;
+	color: #fff;
+}
+
+.announcement-container > .announcement-header > span {
+	position: relative;
+	margin-left: 10px;
+	top: -5px;
+}
+
+.announcement-container > .announcement-header > i {
+	position: relative;
+	top: 2px;
+	left: 10px;
+}
+
+.announcement-container > .announcement-posted {
+	width: 96%;
+	margin: 0 auto;
+}
+
+.post-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.post-date {
+    font-size: 10px;
+    font-style: italic;
+}
+
+.post-desc {
+    font-size: 12px;
+}
+
+.block {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  max-width: 100%;
+  margin: 0 0 1rem 0;
+}
+.block > img {
+  width: 100px;
+  margin: 0 1rem 0 0;
+}
+.block > div {
+  flex: 1;
+}
+.block h4 {
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+}
+
+.block p {
+    margin: 0 0;
+    font-size: 12px;
+}
+
+.block a {
+    margin-top: 0;
+}
+
+a.readmore {
+    font-size: 11px;
+}
+
+.post-container a.more-ann {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+/* SCHOOL DEPARTMENT */
+
+.school-dept {
+	height: auto;
+	width: 100%;
+	border-top: 8px solid #109a4c;
+	background: #fff;
+}
+
+/* SCHOOL AD */
+.school-ad {
+	height: auto;
+	width: 100%;
+}
+
+/* CENTER PANEL */
+
+#right-panel {
+	
+}
+
+#bulletin {
+	height: 328px;
+	background: #fff;
+	width: auto;
+	border-top: 8px solid #109a4c;
+}
+
+#bulletin > .bulletin-container {
+	width: 90%;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+#bulletin > .bulletin-container > h3 {
+	text-align: center;	
+}
+
+#bulletin > .bulletin-container > ul {
+	margin: 0;
+}
+
+#bulletin > .bulletin-container > ul > li {
+	background: #e8e8e8;
+	padding: 10px;
+	list-style: none;
+	margin: 3px -24px;
+	width: 100%;
+	border-left: 3px solid #109a4c;
+	-webkit-transition: ease-out 0.4s;
+	-moz-transition: ease-out 0.4s;
+	transition: ease-out 0.4s;
+}
+
+#bulletin > .bulletin-container > ul > li a {
+	color: #646464;
+}
+
+#bulletin > .bulletin-container > ul > li a:hover {
+	color: #fff !important;
+	text-decoration: none;
+}
+
+
+.login-panel {
+	height: 305px;
+	background: #fff;
+	border-top: 8px solid #109a4c;
+}
+
+.login-panel > .login-container {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.btn-login {
+	margin-top: 20px;
+}
+
+.reminder-panel {
+	height: 70px;
+	background: #fff;
+	margin-top: 5px;
+	max-height: 70px;
+}
+
+.reminder-panel > p {
+	padding: 10px;
+}
+
+/* EVENTS SECTION */
+#events-container {
+	height: auto;
+	background: #dddddd;
+}
+
+#events-container > div {
+	margin-top:40px;
+}
+
+/* MISSION VISION PANEL*/
+
+#mission-panel, #vision-panel {
+	padding: 10px;
+	height: 340px;
+	background: #fff;
+	margin: 30px 0;
+	width: 100%;
+}
+
+.vision-content, .mission-content {
+	padding: 20px;
+}
+
+.mission-content {
+	text-align: left !important;
+}
+
+#mission-panel {
+	border-right: 5px solid #109a4c;
+}
+
+#vision-panel {
+	border-left: 5px solid #109a4c;
+}
+
+.mission-content > h2 {
+	text-align: center;
+}
+
+.mission-vision-panel {
+	margin-bottom: 20px;
+}
+
+footer {
+	height: 100px;
+	background: #10c35d;
+}
+
+footer ul li {
+	list-style: none;
+	float: left;
+	width: 400px;
+	margin: 0 1%;
+}
+
+footer ul li img {
+	width: 70px;
+}
+
+footer ul li:nth-child(2) {
+	text-align: center;
+}
+
+footer ul li span {
+	color: #fff;
+}

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index');
 
 Auth::routes();
 
@@ -51,7 +49,6 @@ Route::prefix('admin')->group(function() {
 	Route::get('/show-bulletins-page', 'AdminBulletinsController@index')->name('show.bulletins');
 	Route::delete('/delete-bulletin/{id}', 'AdminBulletinsController@destroy')->name('delete.bulletin');
 	Route::put('/edit-bulletin/{id}', 'AdminBulletinsController@update')->name('edit.bulletin');
-
 
 });
 
