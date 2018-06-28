@@ -55894,7 +55894,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.getChatMessages();
         this.listen();
-        // $(".other-sender").stop().animate({ scrollTop: $(".other-sender")[0].scrollHeight}, 1000);
     }
 });
 

@@ -97,7 +97,6 @@
      	mounted() {
      		this.getChatMessages();
      		this.listen();
-     		// $(".other-sender").stop().animate({ scrollTop: $(".other-sender")[0].scrollHeight}, 1000);
      	}
     }
     
