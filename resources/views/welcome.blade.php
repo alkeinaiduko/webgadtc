@@ -130,21 +130,33 @@
                     <div class="login-panel">
                         <div class="login-container">
                             <h3>Student Login</h3>
-                            <form>
+                            <form method="POST" action="{{ route('login') }}">
+                                @csrf
                                 <div class="uk-margin">
                                     <div class="uk-inline">
                                         <span class="uk-form-icon" :uk-icon="'icon: user'"></span>
-                                        <input class="uk-input" type="text" placeholder="Username">
+                                        <input id="email" type="text" class="uk-input{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Username">
                                     </div>
+
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
 
                                 <div class="uk-margin">
                                     <div class="uk-inline">
                                         <span class="uk-form-icon" :uk-icon="'icon: lock'"></span>
-                                        <input class="uk-input" type="password" placeholder="Password">
+                                        <input id="password" type="password" class="uk-input{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
                                     </div>
+                                    <br>
+
+                                    @if ($errors->has('password'))
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    @endif
                                 </div>
-                                <label><input class="uk-checkbox" type="checkbox" checked> Remember Me</label><br>
+                                <label><input class="uk-checkbox" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}</label><br>
                                 <button class="uk-button uk-button-primary btn-login">Login</button>
                             </form>
                         </div>

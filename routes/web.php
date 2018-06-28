@@ -53,3 +53,7 @@ Route::prefix('admin')->group(function() {
 });
 
 
+
+
+// USER FUNCTIONS
+Route::get('/my-department', 'UserPagesController@loadDeptView')->name('student.department');

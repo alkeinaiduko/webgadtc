@@ -15322,6 +15322,7 @@ Vue.component('bulletin-component', __webpack_require__(50));
 Vue.component('modal', __webpack_require__(53));
 Vue.component('success-modal', __webpack_require__(56));
 Vue.component('confirm-modal', __webpack_require__(59));
+Vue.component('department-chat', __webpack_require__(69));
 
 var app = new Vue({
 	el: '#app',
@@ -50615,6 +50616,314 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(70)
+/* template */
+var __vue_template__ = __webpack_require__(71)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\DepartmentChatComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-409b11ac", Component.options)
+  } else {
+    hotAPI.reload("data-v-409b11ac", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "group-chat-container" } }, [
+    _c("div", { staticClass: "chat-online" }, [
+      _c("div", { staticClass: "chat-search" }, [
+        _c("div", { staticClass: "uk-inline search-people" }, [
+          _c("span", {
+            staticClass: "uk-form-icon uk-form-icon-flip",
+            attrs: { "uk-icon": "icon: search" }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "uk-input",
+            attrs: { type: "text", placeholder: "Search online people" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "online-member" }, [
+        _c("ul", { staticClass: "online-member-list" }, [
+          _c("li", [
+            _c("div", { staticClass: "chat-online-profile" }, [
+              _c("img", {
+                attrs: { src: "/images/user-avatar.png", width: "30px" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "chat-online-name" }, [
+              _vm._v("Alkein Villajos")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("div", { staticClass: "chat-online-profile" }, [
+              _c("img", {
+                attrs: { src: "/images/user-avatar.png", width: "30px" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "chat-online-name" }, [
+              _vm._v("Angelou Alforque")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("div", { staticClass: "chat-online-profile" }, [
+              _c("img", {
+                attrs: { src: "/images/user-avatar.png", width: "30px" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "chat-online-name" }, [
+              _vm._v("Mark Jae Verzosa")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("div", { staticClass: "chat-online-profile" }, [
+              _c("img", {
+                attrs: { src: "/images/user-avatar.png", width: "30px" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "chat-online-name" }, [
+              _vm._v("Jade Mark Abapo")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("div", { staticClass: "chat-online-profile" }, [
+              _c("img", {
+                attrs: { src: "/images/user-avatar.png", width: "30px" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "chat-online-name" }, [
+              _vm._v("Chergin Nacion")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("div", { staticClass: "chat-online-profile" }, [
+              _c("img", {
+                attrs: { src: "/images/user-avatar.png", width: "30px" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "chat-online-name" }, [
+              _vm._v("Jenna Mae Bechayda")
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "chat-main-container" }, [
+      _c("div", { staticClass: "chat-name" }, [
+        _c("ul", [
+          _c("li", [
+            _c("img", {
+              attrs: { src: "/images/user-avatar.png", width: "60px" }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2)
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("h5", [_vm._v("Department Of Computer Studies")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "chat-log-container" }, [
+      _c("div", { staticClass: "chat-log-content" }, [
+        _c("ul", { staticClass: "other-sender" }, [
+          _c("li", [
+            _c("div", { staticClass: "sender-name" }, [
+              _vm._v("Angelou Alforque 10:12 AM, Today")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "sender-message" }, [
+              _vm._v("Hi Alkein, how are you? How is the project coming along?")
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "chat-composer" }, [
+      _c("textarea", {
+        attrs: {
+          name: "message-to-send",
+          id: "message-to-send",
+          placeholder: "Type your message",
+          rows: "3"
+        }
+      }),
+      _vm._v(" "),
+      _c("button", { staticClass: "send-message" }, [
+        _c("i", { staticClass: "material-icons" }, [_vm._v("send")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-409b11ac", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
