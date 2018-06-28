@@ -55,5 +55,10 @@ Route::prefix('admin')->group(function() {
 
 
 
-// USER FUNCTIONS
-Route::get('/my-department', 'UserPagesController@loadDeptView')->name('student.department');
+// USER CONTROLLER
+Route::get('/my-department', 'UserPagesController@loadDeptView')->name('student.department')->middleware('auth');
+
+// CHAT CONTROLLER
+Route::get('/get-chats', 'ChatsController@getChat')->middleware('auth');
+
+Route::post('/store-chat', 'ChatsController@store');

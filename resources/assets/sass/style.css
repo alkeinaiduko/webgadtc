@@ -1072,6 +1072,14 @@ body {
 	font-size: 14px;
 }
 
+.wordwrap { 
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
+}
+
 
 #group-chat-container .chat-main-container .chat-log-container .chat-log-content ul.me-sender {
 	list-style: none;
@@ -1098,7 +1106,7 @@ body {
 	margin-right: 0;
 }
 
-#group-chat-container .chat-main-container .chat-composer textarea {
+#group-chat-container .chat-main-container .chat-composer input {
 	width: 80%;
     border: none;
     padding: 10px 20px;
@@ -1106,6 +1114,8 @@ body {
 	margin-left: 20px;
     border-radius: 10px;
     resize: none;
+    outline: none;
+    overflow: auto;
     background: #eee;
     color: #111;
 	height: 60px;
