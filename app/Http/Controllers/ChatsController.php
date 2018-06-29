@@ -30,4 +30,9 @@ class ChatsController extends Controller
 
     	return ['status' => 'success'];
     }
+
+    public function getUser()
+    {
+        return Auth::user();
+    }
 }

@@ -34,6 +34,7 @@
                 <div class="avatar uk-text-center">
                     <img src="{{asset('/images/user-avatar.png')}}">
                     <h4>{{Auth::user()->firstname}} {{Auth::user()->lastname}}</h4>
+                    <span style="opacity: 0;">{{Auth::user()->id}}</span>
                 </div>
                 <ul>
                     <li><i class="material-icons" uk-tooltip="Settings">settings</i></li>

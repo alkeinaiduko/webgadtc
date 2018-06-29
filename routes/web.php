@@ -62,3 +62,7 @@ Route::get('/my-department', 'UserPagesController@loadDeptView')->name('student.
 Route::get('/get-chats', 'ChatsController@getChat')->middleware('auth');
 
 Route::post('/store-chat', 'ChatsController@store');
+
+
+// CURRENT USER 
+Route::get('/current-user', 'ChatsController@getUser');

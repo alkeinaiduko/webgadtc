@@ -27,9 +27,14 @@
 			
 			<div class="chat-log-container" id="chatlog">
 				<div class="chat-log-content">
-					<ul id="sender" class="other-sender" v-for="message in chats">
-						<li>
-							<div class="sender-name">{{message.user.firstname}} {{message.user.lastname}} 10:12 AM, Today</div>
+					<ul id="mesender" v-for="message in chats">
+						<li class="me-sender" v-if="message.user.id == meSender || message.user.id == iamSender">
+							<div class="sender-name" >{{message.user.firstname}} {{message.user.lastname}} 10:12 AM, Today</div>
+							<div class="sender-message wordwrap">{{message.chat}}</div>
+						</li>
+
+						<li class="other-sender" v-else>
+							<div class="sender-name" >{{message.user.firstname}} {{message.user.lastname}} 10:12 AM, Today</div>
 							<div class="sender-message wordwrap">{{message.chat}}</div>
 						</li>
 					</ul>
@@ -49,31 +54,43 @@
      		return {
      			messageText: '',
 	 			messageSender: '',
+	 			meSender: 0,
+	 			iamSender: 0,
 
      			chats: [],
-     			studentsInChatroom: []
+     			chatSend: {},
+     			studentsInChatroom: [],
      		}
      	},
 
      	methods: {
+     		currentUser() {
+     			axios.get('/current-user').then((response) => {
+     				this.meSender = response.data.id;
+     			});
+     		},
      		getChatMessages() {
      			axios.get('/get-chats').then((response) => {
      				this.chats = response.data;
      			});
      		},
      		sendChat() {
-     			let chatSend = {
+     			this.chatSend = {
      				chat: this.messageText,
      				user: {
-     					firstname: $('#student-panel .avatar h4').text()
+     					firstname: $('#student-panel .avatar h4').text(),
+     					id: $('#student-panel .avatar span').text()
      				}
+
      			};
-				this.chats.push(chatSend);
+     			this.iamSender = $('#student-panel .avatar span').text();
+				this.chats.push(this.chatSend);
 				this.messageText = '';
 
-				axios.post('/store-chat', chatSend).then((response) => {
+				axios.post('/store-chat', this.chatSend).then((response) => {
 					
 				});
+
 				setTimeout(function(){
                     	var objDiv = document.getElementById("chatlog");
 						objDiv.scrollTop = objDiv.scrollHeight;
@@ -96,6 +113,7 @@
  						chat: e.chat.chat,
  						user: e.user
  					});
+
  					setTimeout(function(){
                     	var objDiv = document.getElementById("chatlog");
 						objDiv.scrollTop = objDiv.scrollHeight;
@@ -111,7 +129,12 @@
      		setTimeout(function(){
             	var objDiv = document.getElementById("chatlog");
 				objDiv.scrollTop = objDiv.scrollHeight;
-            }, 250);
+            }, 1000);
+
+            this.currentUser();
+     	},
+     	computed: {
+
      	}
     }
     
