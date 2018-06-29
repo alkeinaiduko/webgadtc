@@ -25,7 +25,7 @@
 				</ul>
 			</div>
 			
-			<div class="chat-log-container">
+			<div class="chat-log-container" id="chatlog">
 				<div class="chat-log-content">
 					<ul id="sender" class="other-sender" v-for="message in chats">
 						<li>
@@ -72,8 +72,13 @@
 				this.messageText = '';
 
 				axios.post('/store-chat', chatSend).then((response) => {
-
-				});				
+					
+				});
+				setTimeout(function(){
+                    	var objDiv = document.getElementById("chatlog");
+						objDiv.scrollTop = objDiv.scrollHeight;
+	                }, 250);
+					
      		},
      		listen() {
      			Echo.join('groupchat')
@@ -91,12 +96,23 @@
  						chat: e.chat.chat,
  						user: e.user
  					});
+
+ 					setTimeout(function(){
+                    	var objDiv = document.getElementById("chatlog");
+						objDiv.scrollTop = objDiv.scrollHeight;
+	                }, 250);
+ 					
  				});
      		}
      	},
      	mounted() {
      		this.getChatMessages();
      		this.listen();
+
+     		setTimeout(function(){
+            	var objDiv = document.getElementById("chatlog");
+				objDiv.scrollTop = objDiv.scrollHeight;
+            }, 250);
      	}
     }
     
