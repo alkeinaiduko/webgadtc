@@ -96,7 +96,6 @@
  						chat: e.chat.chat,
  						user: e.user
  					});
-
  					setTimeout(function(){
                     	var objDiv = document.getElementById("chatlog");
 						objDiv.scrollTop = objDiv.scrollHeight;

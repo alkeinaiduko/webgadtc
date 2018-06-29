@@ -55892,7 +55892,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     chat: e.chat.chat,
                     user: e.user
                 });
-
                 setTimeout(function () {
                     var objDiv = document.getElementById("chatlog");
                     objDiv.scrollTop = objDiv.scrollHeight;
