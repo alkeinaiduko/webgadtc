@@ -55839,59 +55839,79 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             messageText: '',
             messageSender: '',
+            meSender: 0,
+            iamSender: 0,
 
             chats: [],
+            chatSend: {},
             studentsInChatroom: []
         };
     },
 
 
     methods: {
-        getChatMessages: function getChatMessages() {
+        currentUser: function currentUser() {
             var _this = this;
 
+            axios.get('/current-user').then(function (response) {
+                _this.meSender = response.data.id;
+            });
+        },
+        getChatMessages: function getChatMessages() {
+            var _this2 = this;
+
             axios.get('/get-chats').then(function (response) {
-                _this.chats = response.data;
+                _this2.chats = response.data;
             });
         },
         sendChat: function sendChat() {
-            var chatSend = {
+            this.chatSend = {
                 chat: this.messageText,
                 user: {
-                    firstname: $('#student-panel .avatar h4').text()
+                    firstname: $('#student-panel .avatar h4').text(),
+                    id: $('#student-panel .avatar span').text()
                 }
+
             };
-            this.chats.push(chatSend);
+            this.iamSender = $('#student-panel .avatar span').text();
+            this.chats.push(this.chatSend);
             this.messageText = '';
 
-            axios.post('/store-chat', chatSend).then(function (response) {});
+            axios.post('/store-chat', this.chatSend).then(function (response) {});
+
             setTimeout(function () {
                 var objDiv = document.getElementById("chatlog");
                 objDiv.scrollTop = objDiv.scrollHeight;
             }, 250);
         },
         listen: function listen() {
-            var _this2 = this;
+            var _this3 = this;
 
             Echo.join('groupchat').here(function (users) {
-                _this2.studentsInChatroom = users;
+                _this3.studentsInChatroom = users;
             }).joining(function (user) {
-                _this2.studentsInChatroom.push(user);
+                _this3.studentsInChatroom.push(user);
             }).leaving(function (user) {
-                _this2.studentsInChatroom = _this2.studentsInChatroom.filter(function (u) {
+                _this3.studentsInChatroom = _this3.studentsInChatroom.filter(function (u) {
                     return u != user;
                 });
             }).listen('ChatPosted', function (e) {
-                _this2.chats.push({
+                _this3.chats.push({
                     chat: e.chat.chat,
                     user: e.user
                 });
+
                 setTimeout(function () {
                     var objDiv = document.getElementById("chatlog");
                     objDiv.scrollTop = objDiv.scrollHeight;
@@ -55906,8 +55926,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         setTimeout(function () {
             var objDiv = document.getElementById("chatlog");
             objDiv.scrollTop = objDiv.scrollHeight;
-        }, 250);
-    }
+        }, 1000);
+
+        this.currentUser();
+    },
+
+    computed: {}
 });
 
 /***/ }),
@@ -55981,26 +56005,38 @@ var render = function() {
             "div",
             { staticClass: "chat-log-content" },
             _vm._l(_vm.chats, function(message) {
-              return _c(
-                "ul",
-                { staticClass: "other-sender", attrs: { id: "sender" } },
-                [
-                  _c("li", [
-                    _c("div", { staticClass: "sender-name" }, [
-                      _vm._v(
-                        _vm._s(message.user.firstname) +
-                          " " +
-                          _vm._s(message.user.lastname) +
-                          " 10:12 AM, Today"
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "sender-message wordwrap" }, [
-                      _vm._v(_vm._s(message.chat))
+              return _c("ul", { attrs: { id: "mesender" } }, [
+                message.user.id == _vm.meSender ||
+                message.user.id == _vm.iamSender
+                  ? _c("li", { staticClass: "me-sender" }, [
+                      _c("div", { staticClass: "sender-name" }, [
+                        _vm._v(
+                          _vm._s(message.user.firstname) +
+                            " " +
+                            _vm._s(message.user.lastname) +
+                            " 10:12 AM, Today"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "sender-message wordwrap" }, [
+                        _vm._v(_vm._s(message.chat))
+                      ])
                     ])
-                  ])
-                ]
-              )
+                  : _c("li", { staticClass: "other-sender" }, [
+                      _c("div", { staticClass: "sender-name" }, [
+                        _vm._v(
+                          _vm._s(message.user.firstname) +
+                            " " +
+                            _vm._s(message.user.lastname) +
+                            " 10:12 AM, Today"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "sender-message wordwrap" }, [
+                        _vm._v(_vm._s(message.chat))
+                      ])
+                    ])
+              ])
             })
           )
         ]
