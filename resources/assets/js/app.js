@@ -22,6 +22,7 @@ Vue.component('bulletin-component', require('./components/BulletinComponent.vue'
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('success-modal', require('./components/SuccessModal.vue'));
 Vue.component('confirm-modal', require('./components/ConfirmModal.vue'));
+Vue.component('department-chat', require('./components/DepartmentChatComponent.vue'));
 
 
 const app = new Vue({

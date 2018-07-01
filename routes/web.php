@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index');
 
 Auth::routes();
 
@@ -52,7 +50,10 @@ Route::prefix('admin')->group(function() {
 	Route::delete('/delete-bulletin/{id}', 'AdminBulletinsController@destroy')->name('delete.bulletin');
 	Route::put('/edit-bulletin/{id}', 'AdminBulletinsController@update')->name('edit.bulletin');
 
-
 });
 
 
+
+
+// USER FUNCTIONS
+Route::get('/my-department', 'UserPagesController@loadDeptView')->name('student.department');
