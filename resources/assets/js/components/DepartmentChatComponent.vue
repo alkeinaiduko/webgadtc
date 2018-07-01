@@ -10,34 +10,9 @@
 			
 			<div class="online-member">
 				<ul class="online-member-list">
-					<li>
+					<li v-for="student in studentsInChatroom">
 						<div class="chat-online-profile"><img :src="'/images/user-avatar.png'" width="30px"></div>
-						<div class="chat-online-name">Alkein Villajos</div>
-					</li>
-					
-					<li>
-						<div class="chat-online-profile"><img :src="'/images/user-avatar.png'" width="30px"></div>
-						<div class="chat-online-name">Angelou Alforque</div>
-					</li>
-					
-					<li>
-						<div class="chat-online-profile"><img :src="'/images/user-avatar.png'" width="30px"></div>
-						<div class="chat-online-name">Mark Jae Verzosa</div>
-					</li>
-					
-					<li>
-						<div class="chat-online-profile"><img :src="'/images/user-avatar.png'" width="30px"></div>
-						<div class="chat-online-name">Jade Mark Abapo</div>
-					</li>
-					
-					<li>
-						<div class="chat-online-profile"><img :src="'/images/user-avatar.png'" width="30px"></div>
-						<div class="chat-online-name">Chergin Nacion</div>
-					</li>
-					
-					<li>
-						<div class="chat-online-profile"><img :src="'/images/user-avatar.png'" width="30px"></div>
-						<div class="chat-online-name">Jenna Mae Bechayda</div>
+						<div class="chat-online-name">{{student.firstname}} {{student.lastname}}</div>
 					</li>
 				</ul>
 			</div>
@@ -46,23 +21,23 @@
 			<div class="chat-name">
 				<ul>
 					<li><img :src="'/images/user-avatar.png'" width="60px"></li>
-					<li><h5>Department Of Computer Studies</h5></li>
+					<li><h5>Department Of Computer Studies</h5>Online Students: {{studentsInChatroom.length}}</li>
 				</ul>
 			</div>
 			
 			<div class="chat-log-container">
 				<div class="chat-log-content">
-					<ul class="other-sender">
+					<ul id="sender" class="other-sender" v-for="message in chats">
 						<li>
-							<div class="sender-name">Angelou Alforque 10:12 AM, Today</div>
-							<div class="sender-message">Hi Alkein, how are you? How is the project coming along?</div>
+							<div class="sender-name">{{message.user.firstname}} {{message.user.lastname}} 10:12 AM, Today</div>
+							<div class="sender-message wordwrap">{{message.chat}}</div>
 						</li>
 					</ul>
 				</div>
 			</div>
 			<div class="chat-composer">
-				<textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
-				<button class="send-message"><i class="material-icons">send</i></button>
+				<input name="chat" v-model="messageText" id="chat" placeholder="Type your message" @keydown.enter="sendChat()">
+				<button class="send-message" @click="sendChat()"><i class="material-icons">send</i></button>
 			</div>
 		</div>
 	</div>
@@ -70,7 +45,59 @@
 
 <script type="text/javascript">
     export default {
-     
+     	data() {
+     		return {
+     			messageText: '',
+	 			messageSender: '',
+
+     			chats: [],
+     			studentsInChatroom: []
+     		}
+     	},
+
+     	methods: {
+     		getChatMessages() {
+     			axios.get('/get-chats').then((response) => {
+     				this.chats = response.data;
+     			});
+     		},
+     		sendChat() {
+     			let chatSend = {
+     				chat: this.messageText,
+     				user: {
+     					firstname: $('#student-panel .avatar h4').text()
+     				}
+     			};
+				this.chats.push(chatSend);
+				this.messageText = '';
+
+				axios.post('/store-chat', chatSend).then((response) => {
+
+				});				
+     		},
+     		listen() {
+     			Echo.join('groupchat')
+ 				.here((users) => {
+ 					this.studentsInChatroom = users;
+ 				})
+ 				.joining((user) => {
+ 					this.studentsInChatroom.push(user);
+ 				})
+ 				.leaving((user) => {
+ 					this.studentsInChatroom = this.studentsInChatroom.filter(u => u != user)
+ 				})
+ 				.listen('ChatPosted', (e) => {
+ 					this.chats.push({
+ 						chat: e.chat.chat,
+ 						user: e.user
+ 					});
+ 				});
+     		}
+     	},
+     	mounted() {
+     		this.getChatMessages();
+     		this.listen();
+     	}
     }
     
 </script>

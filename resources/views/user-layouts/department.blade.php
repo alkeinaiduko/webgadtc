@@ -2,6 +2,7 @@
 
 
 @section('content')
+
 	<header id="portal-header">
 		
 		<ul class="uk-breadcrumb">
@@ -59,4 +60,12 @@
 			</div>
 		</section>
 	</section>
+
+
 @endsection
+<style>
+	body {
+		
+		/*overflow: hidden;*/
+	}
+</style>
