@@ -63,6 +63,7 @@ body, html {
 	border-radius: 20px;
 	position: relative;
 	bottom: 7px;
+	cursor: pointer;
 }
 
 #admin-header h3 {
@@ -738,6 +739,7 @@ body {
     overflow: hidden;
     background: #b6e4bd;
 	position: fixed;
+	z-index: 3;
 }
 
 #student-main-container .student-side-nav ul.student-nav-links {
@@ -1080,7 +1082,7 @@ body {
 }
 
 #group-chat-container .chat-main-container .chat-log-container .chat-log-content li.other-sender .sender-name {
-	font-size: 14px;
+	font-size: 10px;
 	margin-bottom: 5px;
 }
 
@@ -1112,7 +1114,7 @@ body {
 }
 
 #group-chat-container .chat-main-container .chat-log-container .chat-log-content li.me-sender .sender-name {
-	font-size: 14px;
+	font-size: 10px;
 	margin-bottom: 5px;
 	text-align: right;
 }
@@ -1196,4 +1198,37 @@ body {
 
 .invalid-feedback {
 	display: block;
+}
+
+#admin-login-container {
+    display: flex;
+}
+#admin-login-container .cover-page,
+#admin-login-container .admin-login-form {
+    height: 100vh;
+
+}
+
+#admin-login-container .cover-page {
+    flex: 3;
+    background: url('/images/admin-cover.jpg') no-repeat;
+    background-size: cover;
+}
+#admin-login-container .admin-login-form {
+    flex: 2;
+	border-top: 5px solid #35b241;
+	background-color: #fff;
+}
+
+.admin-form-container {
+    height: 300px;
+    width: auto;
+    margin: 25% 0;
+    text-align: center;
+	
+}
+
+.admin-forms {
+    padding: 20px;
+    height: 100%;
 }

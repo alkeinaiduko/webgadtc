@@ -10684,6 +10684,7 @@ html {
   border-radius: 20px;
   position: relative;
   bottom: 7px;
+  cursor: pointer;
 }
 
 #admin-header h3 {
@@ -11035,7 +11036,7 @@ html {
 
 #showcase {
   height: 400px;
-  background: url(/images/banner.jpg?acba163c6ac78f5c4cfc0f08af70a28b) no-repeat;
+  background: url(/images/banner.jpg?be87321eaac240c14fc6d97158f590cb) no-repeat;
   background-size: cover;
 }
 
@@ -11377,6 +11378,7 @@ body {
   overflow: hidden;
   background: #b6e4bd;
   position: fixed;
+  z-index: 3;
 }
 
 #student-main-container .student-side-nav ul.student-nav-links {
@@ -11722,7 +11724,7 @@ body {
 }
 
 #group-chat-container .chat-main-container .chat-log-container .chat-log-content li.other-sender .sender-name {
-  font-size: 14px;
+  font-size: 10px;
   margin-bottom: 5px;
 }
 
@@ -11758,7 +11760,7 @@ body {
 }
 
 #group-chat-container .chat-main-container .chat-log-container .chat-log-content li.me-sender .sender-name {
-  font-size: 14px;
+  font-size: 10px;
   margin-bottom: 5px;
   text-align: right;
 }
@@ -11842,6 +11844,45 @@ body {
 
 .invalid-feedback {
   display: block;
+}
+
+#admin-login-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#admin-login-container .cover-page,
+#admin-login-container .admin-login-form {
+  height: 100vh;
+}
+
+#admin-login-container .cover-page {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  background: url("/images/admin-cover.jpg") no-repeat;
+  background-size: cover;
+}
+
+#admin-login-container .admin-login-form {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  border-top: 5px solid #35b241;
+  background-color: #fff;
+}
+
+.admin-form-container {
+  height: 300px;
+  width: auto;
+  margin: 25% 0;
+  text-align: center;
+}
+
+.admin-forms {
+  padding: 20px;
+  height: 100%;
 }
 
 .navbar-laravel {

@@ -1,5 +1,3 @@
-
-
 @extends('admin-layouts.appnav')
 
 @section('content')
