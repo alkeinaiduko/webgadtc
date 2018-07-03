@@ -9,8 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Gov. Alfonso D. Tan College</title>
-
-    
+    <link rel="shortcut icon" type="image/png" href="{{asset('/images/logo.png')}}"/>    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">

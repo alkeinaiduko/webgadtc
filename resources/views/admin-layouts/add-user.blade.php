@@ -54,7 +54,12 @@
 									<birthdate-component autocomplete="off"></birthdate-component>
 								</div>
 								<div class="uk-width-1-3">
-									<input class="uk-input" type="text" name="sex" placeholder="Sex" required>
+
+									<select class="uk-select" type="text" name="sex" value="{{old('who')}}" required>
+							        	<option disabled selected hidden>Sex</option>
+							                <option>Male</option>
+							                <option>Female</option>
+						            </select>
 								</div>
 								<div class="uk-width-1-3">
 									<input class="uk-input" type="text" name="address" placeholder="Address" required>

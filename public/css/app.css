@@ -11309,15 +11309,13 @@ footer {
   left: 0;
 }
 
-footer ul li {
-  list-style: none;
-  float: left;
-  width: 400px;
-  margin: 0 1%;
+footer img {
+  width: 75px;
 }
 
-footer ul li img {
-  width: 70px;
+.footer {
+  width: 350px;
+  margin: 0 auto;
 }
 
 footer ul li:nth-child(2) {
@@ -11332,7 +11330,7 @@ footer ul li span {
   width: 100%;
   height: 50px;
   position: fixed;
-  z-index: 100;
+  /*    z-index: 100;*/
   background: #fff;
   -webkit-box-shadow: -5px 4px 20px -4px rgba(0, 0, 0, 0.5);
           box-shadow: -5px 4px 20px -4px rgba(0, 0, 0, 0.5);

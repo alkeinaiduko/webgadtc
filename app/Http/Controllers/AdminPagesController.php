@@ -14,7 +14,8 @@ class AdminPagesController extends Controller
 
    public function showAddBulletinPage()
    {
-   	return view('admin-layouts.add-bulletin');
+      $departments = Department::all();
+   	return view('admin-layouts.add-bulletin', compact('departments'));
    }
 
    public function showAddUserPage()

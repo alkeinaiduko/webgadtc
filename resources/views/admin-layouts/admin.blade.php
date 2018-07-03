@@ -25,7 +25,6 @@
 			<div class="admin-main-content-container">
 				<div class="admin-main-content">
 					<h1>DASHBOARD</h1>
-					<h1>DASHBOARD</h1>
 				</div>
 			</div>
 		</section>

@@ -295,7 +295,7 @@
           this.edited.description = event.target.value;
         },
         sampleClick() {
-          alert('You have clicked me. Oh Yeah!');
+          // alert('You have clicked me. Oh Yeah!');
         }
       }
     }

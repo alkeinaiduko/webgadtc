@@ -49,7 +49,7 @@
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module">
-            <h4>Archives</h4>
+            <h4>Latest Announcement</h4>
             <ol class="list-unstyled">
             	@foreach($announcements as $ann)
 	              <li><a href="/view-announcement/{{$ann->id}}">{{$ann->title}}</a></li>
@@ -71,14 +71,10 @@
     </div><!-- /.container -->
 
     <footer>
-        <ul>
-            <li>&nbsp;</li>
-            <li>
-                <img src="{{asset('/images/my-logo-white-thick-01.svg')}}">
-                <br>
-                <span>This website is made with ❤️ by Alkein Villajos</span>
-            </li>
-            <li>&nbsp;</li>
-        </ul>
+        <div class="footer text-center">
+            <img src="{{asset('/images/my-logo-white-thick-01.svg')}}">
+            <br>
+            <span>This website is made with ❤️ by Alkein Villajos</span>
+        </div>
     </footer>
 @endsection

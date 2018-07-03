@@ -42,7 +42,12 @@
 
 								<div class="uk-grid-small uk-child-width-expand@s" uk-grid>
 							    <div>
-							        <input class="uk-input" type="text" placeholder="Who" name="who" value="{{old('who')}}">
+							        <select class="uk-select" type="text" name="who" value="{{old('who')}}" required>
+							        	<option disabled selected hidden>Who</option>
+							        	@foreach($departments as $dept)
+							                <option>{{$dept->dept_name}}</option>
+						                @endforeach
+						            </select>
 							    </div>
 							    <div>
 							        <input class="uk-input" type="text" placeholder="What" name="what" value="{{old('what')}}">

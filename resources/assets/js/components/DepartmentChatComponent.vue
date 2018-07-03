@@ -29,12 +29,12 @@
 				<div class="chat-log-content">
 					<ul id="mesender" v-for="message in chats">
 						<li class="me-sender" v-if="message.user.id == meSender || message.user.id == iamSender">
-							<div class="sender-name" >{{message.user.firstname}} {{message.user.lastname}} 10:12 AM, Today</div>
+							<div class="sender-name" >{{message.user.firstname}} {{message.user.lastname}} {{moment(message.created_at).fromNow()}}</div>
 							<div class="sender-message wordwrap">{{message.chat}}</div>
 						</li>
 
 						<li class="other-sender" v-else>
-							<div class="sender-name" >{{message.user.firstname}} {{message.user.lastname}} 10:12 AM, Today</div>
+							<div class="sender-name" >{{message.user.firstname}} {{message.user.lastname}} {{moment(message.created_at).fromNow()}}</div>
 							<div class="sender-message wordwrap">{{message.chat}}</div>
 						</li>
 					</ul>
@@ -49,9 +49,11 @@
 </template>
 
 <script type="text/javascript">
+	let moment = require('moment');
     export default {
      	data() {
      		return {
+     			moment: moment,
      			messageText: '',
 	 			messageSender: '',
 	 			meSender: 0,
