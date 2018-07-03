@@ -21,7 +21,7 @@
                 <h3>Gov. Alfonso D. Tan College</h3>
             </div>
             <nav>
-                <a href="#">Home</a>
+                <a href="/">Home</a>
                 <a href="#">About</a>
                 <a href="#">Scholarships</a>
                 <a href="#">Academic Programs</a>
@@ -59,11 +59,11 @@
                             @foreach($announcements as $announcement)
                             <div class="post-container">
                                 <div class="block">
-                                    <img src="images/img-post.jpg" alt="">
+                                    <a href="/view-announcement/{{$announcement->id}}"><img src="/storage/announcement_images/{{$announcement->announcement_image}}" alt=""></a>
                                     <div>
-                                        <div class="post-title"><a href="#">{{$announcement->title}}</a> <span class="post-date">On {{$announcement->created_at->format('F d, Y')}}</span></div>
-                                        <p>{{$announcement->description}}</p>
-                                        <a href="#" class="readmore">Read more</a>
+                                        <div class="post-title"><a href="/view-announcement/{{$announcement->id}}">{{$announcement->title}}</a> <span class="post-date">On {{$announcement->created_at->format('F d, Y')}}</span></div>
+                                        <p>{{substr(strip_tags($announcement->description), 0, 100)}} {{strlen($announcement->description) > 100 ? "..." : ""}}</p>
+                                        <a href="/view-announcement/{{$announcement->id}}" class="readmore">Read more</a>
                                     </div>
                                 </div>
                                 <hr>
@@ -175,10 +175,10 @@
 
                     <div id="bulletin">
                         <div class="bulletin-container">
-                            <h3>Bulletin</h3>
+                            <h3 uk-tooltip="More Bulletin Posts"><a href="#">Bulletin</a></h3>
                             <ul class="bulletin-post-list">
                                 @foreach($bulletins as $bulletin)
-                                    <li class="slide-right-bg"><a href="#">{{$bulletin->title}}</a></li>
+                                    <a href="/view-bulletin/{{$bulletin->id}}"><li class="slide-right-bg">{{$bulletin->title}}<br><span>{{$bulletin->who}}</span></li></a>
                                 @endforeach
                             </ul>
                         </div>
@@ -317,7 +317,7 @@
         <ul>
             <li>&nbsp;</li>
             <li>
-                <img src="images/my-logo-white-thick-01.svg">
+                <img src="{{asset('/images/my-logo-white-thick-01.svg')}}">
                 <br>
                 <span>This website is made with ❤️ by Alkein Villajos</span>
             </li>

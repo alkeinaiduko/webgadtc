@@ -10957,7 +10957,14 @@ html {
 .slide-right-bg:hover {
   -webkit-box-shadow: inset 400px 0 0 0 #5dd073;
           box-shadow: inset 400px 0 0 0 #5dd073;
-  color: #fff !important;
+}
+
+.slide-right-bg span {
+  font-size: 12px;
+}
+
+.bulletin-post-list li:hover {
+  color: white;
 }
 
 body,
@@ -11114,7 +11121,7 @@ html {
   margin: 0 0 1rem 0;
 }
 
-.block > img {
+.block img {
   width: 100px;
   margin: 0 1rem 0 0;
 }
@@ -11167,7 +11174,8 @@ a.readmore {
 /* CENTER PANEL */
 
 #bulletin {
-  height: 328px;
+  min-height: 328px;
+  height: auto;
   background: #fff;
   width: auto;
   border-top: 8px solid #109a4c;
@@ -11183,11 +11191,20 @@ a.readmore {
   text-align: center;
 }
 
+#bulletin > .bulletin-container a {
+  color: #555;
+}
+
+#bulletin > .bulletin-container a:hover {
+  text-decoration: none;
+  color: #109a4c;
+}
+
 #bulletin > .bulletin-container > ul {
   margin: 0;
 }
 
-#bulletin > .bulletin-container > ul > li {
+#bulletin > .bulletin-container > ul li {
   background: #e8e8e8;
   padding: 10px;
   list-style: none;
@@ -11198,11 +11215,11 @@ a.readmore {
   transition: ease-out 0.4s;
 }
 
-#bulletin > .bulletin-container > ul > li a {
-  color: #646464;
+#bulletin > .bulletin-container > ul a {
+  color: #646464 !important;
 }
 
-#bulletin > .bulletin-container > ul > li a:hover {
+#bulletin > .bulletin-container > ul a:hover {
   color: #fff !important;
   text-decoration: none;
 }
@@ -11285,6 +11302,10 @@ a.readmore {
 footer {
   height: 100px;
   background: #10c35d;
+  position: relative;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 footer ul li {
@@ -11801,9 +11822,27 @@ body {
   clear: both;
 }
 
-/*
-	*FOR CHAT AUTOMATIC SCROLLBAR
-	*https://codepen.io/muratcorlu/pen/KzmQEP */
+.read-main-container {
+  background: #fff;
+  border-radius: 10px;
+  margin-top: 50px;
+  padding: 30px;
+  margin-bottom: 50px;
+  min-height: 358px;
+}
+
+.blog-main img {
+  margin-bottom: 10px;
+}
+
+.sidebar-module {
+  height: auto;
+  min-height: 400px;
+}
+
+.invalid-feedback {
+  display: block;
+}
 
 .navbar-laravel {
   background-color: #fff;
