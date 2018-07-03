@@ -57,6 +57,8 @@ Route::prefix('admin')->group(function() {
 
 // USER CONTROLLER
 Route::get('/my-department', 'UserPagesController@loadDeptView')->name('student.department')->middleware('auth');
+Route::get('/view-announcement/{id}', 'UserPagesController@viewAnnouncement');
+Route::get('/view-bulletin/{id}', 'UserPagesController@viewBulletin');
 
 // CHAT CONTROLLER
 Route::get('/get-chats', 'ChatsController@getChat')->middleware('auth');
