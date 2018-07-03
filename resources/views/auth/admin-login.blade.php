@@ -1,7 +1,7 @@
 @extends('admin-layouts.app')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -65,5 +65,52 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+
+    <section id="admin-login-container">
+        <div class="cover-page">
+        </div>
+        <div class="admin-login-form">
+            <div class="admin-form-container">
+                <div class="admin-forms">
+                    <h2>Admin Login</h2>
+                    <form method="POST" action="{{ route('admin.login.submit') }}">
+                        @csrf
+
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <span class="uk-form-icon" :uk-icon="'icon: user'"></span>
+                                <input id="email" type="email" class="uk-input{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Username">
+                            </div>
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <span class="uk-form-icon uk-form-icon" :uk-icon="'icon: lock'"></span>
+                                <input id="password" type="password" class="uk-input{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Password">
+                            </div>
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <button class="uk-button uk-button-primary">Login</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

@@ -63,6 +63,7 @@ body, html {
 	border-radius: 20px;
 	position: relative;
 	bottom: 7px;
+	cursor: pointer;
 }
 
 #admin-header h3 {
@@ -327,7 +328,14 @@ body, html {
 
 .slide-right-bg:hover {
 	box-shadow: inset 400px 0 0 0 #5dd073;
-	color: #fff !important;
+}
+
+.slide-right-bg span {
+	font-size: 12px;
+}
+
+.bulletin-post-list li:hover {
+	color: white;
 }
 
 body, html {
@@ -478,7 +486,7 @@ body, html {
   max-width: 100%;
   margin: 0 0 1rem 0;
 }
-.block > img {
+.block img {
   width: 100px;
   margin: 0 1rem 0 0;
 }
@@ -530,7 +538,8 @@ a.readmore {
 }
 
 #bulletin {
-	height: 328px;
+	min-height: 328px;
+	height: auto;
 	background: #fff;
 	width: auto;
 	border-top: 8px solid #109a4c;
@@ -546,11 +555,20 @@ a.readmore {
 	text-align: center;	
 }
 
+#bulletin > .bulletin-container a {
+	color: #555;
+}
+
+#bulletin > .bulletin-container a:hover {
+	text-decoration: none;
+	color: #109a4c;
+}
+
 #bulletin > .bulletin-container > ul {
 	margin: 0;
 }
 
-#bulletin > .bulletin-container > ul > li {
+#bulletin > .bulletin-container > ul li {
 	background: #e8e8e8;
 	padding: 10px;
 	list-style: none;
@@ -562,11 +580,11 @@ a.readmore {
 	transition: ease-out 0.4s;
 }
 
-#bulletin > .bulletin-container > ul > li a {
-	color: #646464;
+#bulletin > .bulletin-container > ul a {
+	color: #646464 !important;
 }
 
-#bulletin > .bulletin-container > ul > li a:hover {
+#bulletin > .bulletin-container > ul a:hover {
 	color: #fff !important;
 	text-decoration: none;
 }
@@ -647,6 +665,10 @@ a.readmore {
 footer {
 	height: 100px;
 	background: #10c35d;
+	position: relative;
+	bottom: 0;
+	right: 0;
+	left: 0;
 }
 
 footer ul li {
@@ -717,6 +739,7 @@ body {
     overflow: hidden;
     background: #b6e4bd;
 	position: fixed;
+	z-index: 3;
 }
 
 #student-main-container .student-side-nav ul.student-nav-links {
@@ -1059,7 +1082,7 @@ body {
 }
 
 #group-chat-container .chat-main-container .chat-log-container .chat-log-content li.other-sender .sender-name {
-	font-size: 14px;
+	font-size: 10px;
 	margin-bottom: 5px;
 }
 
@@ -1091,7 +1114,7 @@ body {
 }
 
 #group-chat-container .chat-main-container .chat-log-container .chat-log-content li.me-sender .sender-name {
-	font-size: 14px;
+	font-size: 10px;
 	margin-bottom: 5px;
 	text-align: right;
 }
@@ -1155,6 +1178,57 @@ body {
 	clear: both;
 }
 
-/*
-	*FOR CHAT AUTOMATIC SCROLLBAR
-	*https://codepen.io/muratcorlu/pen/KzmQEP */
+.read-main-container {
+	background: #fff;
+	border-radius: 10px;
+	margin-top: 50px;
+	padding: 30px;
+	margin-bottom: 50px;
+	min-height: 358px;
+}
+
+.blog-main img {
+	margin-bottom: 10px;
+}
+
+.sidebar-module {
+	height: auto;
+    min-height: 400px;
+}
+
+.invalid-feedback {
+	display: block;
+}
+
+#admin-login-container {
+    display: flex;
+}
+#admin-login-container .cover-page,
+#admin-login-container .admin-login-form {
+    height: 100vh;
+
+}
+
+#admin-login-container .cover-page {
+    flex: 3;
+    background: url('/images/admin-cover.jpg') no-repeat;
+    background-size: cover;
+}
+#admin-login-container .admin-login-form {
+    flex: 2;
+	border-top: 5px solid #35b241;
+	background-color: #fff;
+}
+
+.admin-form-container {
+    height: 300px;
+    width: auto;
+    margin: 25% 0;
+    text-align: center;
+	
+}
+
+.admin-forms {
+    padding: 20px;
+    height: 100%;
+}
